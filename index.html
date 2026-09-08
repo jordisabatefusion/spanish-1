@@ -1,70 +1,536 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canvas Interactive Test</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 650px;
-      margin: 40px auto;
-      padding: 30px;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      margin: 12px 0;
-      font-size: 18px;
-      background: white;
-      border: 2px solid #333;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #f2f2f2;
-    }
-
-    #feedback {
-      margin-top: 25px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los adjetivos — Práctica interactiva</title>
+<style>
+  :root{
+    --ink:#171717;
+    --muted:#6b7280;
+    --line:#d8dee6;
+    --soft:#f7f9fb;
+    --panel:#ffffff;
+    --accent:#19a7b8;
+    --accent-dark:#0f7f8c;
+    --good:#14804a;
+    --bad:#b42318;
+    --warn:#8a6116;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#eef3f6;
+    color:var(--ink);
+  }
+  .shell{
+    max-width:1080px;
+    margin:0 auto;
+    padding:28px 18px 56px;
+  }
+  .hero{
+    background:linear-gradient(135deg,#111 0 38%,#1b1b1b 38% 58%,#19a7b8 58% 100%);
+    color:white;
+    border-radius:22px;
+    padding:34px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    font-size:13px;
+    letter-spacing:.12em;
+    font-weight:700;
+    opacity:.85;
+  }
+  h1{
+    margin:8px 0 10px;
+    font-size:clamp(34px,6vw,58px);
+    line-height:1;
+  }
+  .hero p{
+    max-width:760px;
+    margin:0;
+    font-size:18px;
+    line-height:1.55;
+  }
+  .progress-wrap{
+    margin-top:22px;
+    background:rgba(255,255,255,.22);
+    border-radius:999px;
+    overflow:hidden;
+    height:12px;
+  }
+  #progressBar{
+    height:100%;
+    width:0%;
+    background:white;
+    transition:width .25s ease;
+  }
+  #progressText{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:700;
+  }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px;
+    margin:18px 0;
+    box-shadow:0 6px 18px rgba(0,0,0,.035);
+  }
+  .section-head{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .num{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:var(--accent);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:22px;
+    flex:0 0 auto;
+  }
+  h2{
+    margin:2px 0 5px;
+    font-size:28px;
+  }
+  .instructions{
+    color:#374151;
+    margin:0;
+    line-height:1.5;
+  }
+  .bank{
+    border:1px solid var(--line);
+    background:var(--soft);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:700;
+  }
+  .image-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:18px 0 22px;
+  }
+  .image-slot{
+    min-height:150px;
+    border:2px dashed #aab5c0;
+    border-radius:14px;
+    background:#fafcfd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:16px;
+    color:#6b7280;
+    font-size:14px;
+  }
+  .q{
+    padding:15px 0;
+    border-top:1px solid #edf0f2;
+  }
+  .q:first-of-type{border-top:0}
+  .q label{
+    display:block;
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .inline{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  select,input[type="text"],textarea{
+    font:inherit;
+    border:2px solid #cfd7df;
+    border-radius:10px;
+    padding:11px 12px;
+    background:white;
+  }
+  input[type="text"]{
+    min-width:260px;
+    flex:1;
+  }
+  select{min-width:180px}
+  textarea{
+    width:100%;
+    min-height:180px;
+    resize:vertical;
+    line-height:1.5;
+  }
+  button{
+    font:inherit;
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    cursor:pointer;
+    font-weight:800;
+  }
+  .check{
+    background:var(--ink);
+    color:white;
+  }
+  .check:hover{background:#333}
+  .reset{
+    background:white;
+    color:var(--ink);
+    border:2px solid var(--line);
+  }
+  .feedback{
+    margin-top:9px;
+    font-weight:700;
+    min-height:20px;
+  }
+  .good{color:var(--good)}
+  .bad{color:var(--bad)}
+  .note{
+    color:var(--warn);
+    background:#fff7df;
+    border:1px solid #f0d997;
+    border-radius:12px;
+    padding:12px 14px;
+    margin-top:12px;
+    line-height:1.45;
+  }
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .desc-list{
+    background:var(--soft);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .desc-list p{margin:8px 0}
+  .error-box{
+    background:#fbfbfb;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    line-height:1.75;
+    font-family:Georgia, serif;
+    font-size:18px;
+  }
+  .footer-actions{
+    display:flex;
+    gap:12px;
+    justify-content:flex-end;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .small{
+    font-size:13px;
+    color:var(--muted);
+  }
+  @media (max-width:760px){
+    .image-grid,.two-col{grid-template-columns:1fr}
+    .hero{padding:26px}
+    .card{padding:20px}
+    input[type="text"],select{width:100%;min-width:0}
+  }
+</style>
 </head>
-
 <body>
+<div class="shell">
 
-  <h2>What is “house” in Spanish?</h2>
+  <section class="hero">
+    <div class="eyebrow">Español · Gramática y comunicación</div>
+    <h1>Los adjetivos</h1>
+    <p>Practica género, número y concordancia. Completa, selecciona, corrige y escribe. Recibirás retroalimentación inmediata en los ejercicios autocorregibles.</p>
+    <div class="progress-wrap"><div id="progressBar"></div></div>
+    <div id="progressText">0 de 25 respuestas correctas</div>
+  </section>
 
-  <button onclick="checkAnswer(true)">Casa</button>
-  <button onclick="checkAnswer(false)">Mesa</button>
-  <button onclick="checkAnswer(false)">Silla</button>
+  <section class="card">
+    <div class="section-head">
+      <div class="num">26</div>
+      <div>
+        <h2>¿Morenos o morenas?</h2>
+        <p class="instructions"><strong>Completa.</strong> Elige el adjetivo que mejor describe cada imagen. Presta atención al género y al número.</p>
+      </div>
+    </div>
 
-  <div id="feedback"></div>
+    <div class="bank">
+      <span class="chip">bajo / baja</span>
+      <span class="chip">alto / alta</span>
+      <span class="chip">atrevido / atrevida</span>
+      <span class="chip">serio / seria</span>
+      <span class="chip">gordo / gorda</span>
+      <span class="chip">estudioso / estudiosa</span>
+      <span class="chip">gracioso / graciosa</span>
+      <span class="chip">mayor</span>
+    </div>
 
-  <script>
-    function checkAnswer(correct) {
-      const feedback = document.getElementById("feedback");
+    <div class="image-grid">
+      <div class="image-slot">IMAGEN 1<br>Reemplaza este cuadro con tu imagen</div>
+      <div class="image-slot">IMAGEN 2<br>Reemplaza este cuadro con tu imagen</div>
+      <div class="image-slot">IMAGEN 3<br>Reemplaza este cuadro con tu imagen</div>
+      <div class="image-slot">IMAGEN 4<br>Reemplaza este cuadro con tu imagen</div>
+      <div class="image-slot">IMAGEN 5<br>Reemplaza este cuadro con tu imagen</div>
+      <div class="image-slot">IMAGEN 6<br>Reemplaza este cuadro con tu imagen</div>
+    </div>
 
-      if (correct) {
-        feedback.textContent = "✅ ¡Correcto!";
-      } else {
-        feedback.textContent = "❌ Inténtalo otra vez.";
-      }
-    }
-  </script>
+    <div class="q">
+      <label>1. Sonia es <strong>baja</strong> y Orlando es <strong>alto</strong>. <span class="small">(ejemplo)</span></label>
+    </div>
 
+    <div class="q">
+      <label>2. La policía es muy…</label>
+      <div class="inline">
+        <select data-answer="seria">
+          <option value="">Selecciona…</option>
+          <option>serio</option><option>seria</option><option>atrevida</option><option>alta</option>
+        </select>
+        <button class="check" onclick="checkSelect(this)">Comprobar</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q">
+      <label>3. Las chicas son…</label>
+      <div class="inline">
+        <select data-answer="atrevidas">
+          <option value="">Selecciona…</option>
+          <option>atrevidos</option><option>atrevidas</option><option>serias</option><option>mayores</option>
+        </select>
+        <button class="check" onclick="checkSelect(this)">Comprobar</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q">
+      <label>4. Los señores Rico son…</label>
+      <div class="inline">
+        <select data-answer="mayores">
+          <option value="">Selecciona…</option>
+          <option>mayor</option><option>mayores</option><option>altos</option><option>serios</option>
+        </select>
+        <button class="check" onclick="checkSelect(this)">Comprobar</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q">
+      <label>5. Los payasos son…</label>
+      <div class="inline">
+        <select data-answer="gordos">
+          <option value="">Primero…</option>
+          <option>gordos</option><option>gordas</option><option>serios</option><option>mayores</option>
+        </select>
+        <select data-answer="graciosos">
+          <option value="">Después…</option>
+          <option>graciosos</option><option>graciosas</option><option>estudiosos</option><option>atrevidos</option>
+        </select>
+        <button class="check" onclick="checkMultiSelect(this)">Comprobar</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q">
+      <label>6. Los niños son muy…</label>
+      <div class="inline">
+        <select data-answer="estudiosos">
+          <option value="">Selecciona…</option>
+          <option>estudioso</option><option>estudiosas</option><option>estudiosos</option><option>serios</option>
+        </select>
+        <button class="check" onclick="checkSelect(this)">Comprobar</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <div class="num">27</div>
+      <div>
+        <h2>Uno o dos</h2>
+        <p class="instructions"><strong>Escribe.</strong> Cambia cada oración a la forma singular o plural indicada. Incluye <em>ser</em> y la concordancia correcta del adjetivo.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <label>1. María es delgada. → María y Paz… <span class="small">(ejemplo: son delgadas)</span></label>
+    </div>
+
+    <div class="q textq"><label>2. Luis y Lisa son listos y guapos. → Lisa…</label><div class="inline"><input data-answer="es lista y guapa" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>3. Abraham es serio. → Abraham y Jaime…</label><div class="inline"><input data-answer="son serios" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>4. Santiago y Rafael son tímidos. → Rafael…</label><div class="inline"><input data-answer="es tímido" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>5. Yo soy rubio. → Jim y yo…</label><div class="inline"><input data-answer="somos rubios" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>6. Patty es antipática. → Patty y Sonia…</label><div class="inline"><input data-answer="son antipáticas" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>7. El señor Gil es joven. → El señor Gil y Juan…</label><div class="inline"><input data-answer="son jóvenes" type="text" placeholder="Escribe la respuesta"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+
+    <div class="note">Los acentos importan. El sistema acepta mayúsculas/minúsculas, pero espera la ortografía española correcta, incluidos <strong>tímido, antipáticas, jóvenes</strong>.</div>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <div class="num">28</div>
+      <div>
+        <h2>¿Cómo se llaman?</h2>
+        <p class="instructions"><strong>Lee y completa.</strong> Usa las descripciones para identificar a cada persona.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="image-slot" style="min-height:340px">IMAGEN GRANDE DEL GRUPO<br><br>Sube una imagen y reemplaza este espacio.</div>
+      <div class="desc-list">
+        <p><strong>a.</strong> Marisa es morena y alta.</p>
+        <p><strong>b.</strong> Juan es alto, moreno y gracioso.</p>
+        <p><strong>c.</strong> Silvia es alta y rubia.</p>
+        <p><strong>d.</strong> Marcos es pelirrojo y simpático.</p>
+        <p><strong>e.</strong> Pedro es bajo, rubio y serio.</p>
+        <p><strong>f.</strong> Andrea es baja y rubia.</p>
+      </div>
+    </div>
+
+    <div class="q"><label>Persona 1</label><div class="inline"><select data-answer="Silvia"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q"><label>Persona 2</label><div class="inline"><select data-answer="Andrea"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q"><label>Persona 3</label><div class="inline"><select data-answer="Marcos"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q"><label>Persona 4</label><div class="inline"><select data-answer="Pedro"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q"><label>Persona 5</label><div class="inline"><select data-answer="Juan"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q"><label>Persona 6</label><div class="inline"><select data-answer="Marisa"><option value="">Selecciona…</option><option>Marisa</option><option>Juan</option><option>Silvia</option><option>Marcos</option><option>Pedro</option><option>Andrea</option></select><button class="check" onclick="checkSelect(this)">Comprobar</button></div><div class="feedback"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <div class="num">29</div>
+      <div>
+        <h2>No es correcto</h2>
+        <p class="instructions"><strong>Corrige y escribe.</strong> Hay cinco errores de concordancia. Escribe la forma correcta de cada palabra.</p>
+      </div>
+    </div>
+
+    <div class="error-box">
+      Me llamo Julieta. Soy de Texas. Mi familia es <u>hispano</u>, de México.
+      Soy baja, morena y <u>tímido</u>. Tengo dos hermanos, Jorge y Max.
+      Son muy <u>estudiosas</u>. Mis padres son jóvenes. Mi novio se llama Arturo.
+      Es delgado, <u>atléticos</u> ¡y muy <u>guapa</u>!
+    </div>
+
+    <div class="q textq"><label>1. hispano →</label><div class="inline"><input data-answer="hispana" type="text"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>2. tímido →</label><div class="inline"><input data-answer="tímida" type="text"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>3. estudiosas →</label><div class="inline"><input data-answer="estudiosos" type="text"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>4. atléticos →</label><div class="inline"><input data-answer="atlético" type="text"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+    <div class="q textq"><label>5. guapa →</label><div class="inline"><input data-answer="guapo" type="text"><button class="check" onclick="checkText(this)">Comprobar</button></div><div class="feedback"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <div class="num">30</div>
+      <div>
+        <h2>¿Y tú?</h2>
+        <p class="instructions"><strong>Escribe.</strong> Crea una versión personal. Describe de dónde eres, tu familia y algunas características físicas o de personalidad.</p>
+      </div>
+    </div>
+
+    <textarea id="finalWriting" placeholder="Me llamo… Soy de… Mi familia… Yo soy…"></textarea>
+    <div class="note">
+      <strong>Antes de terminar, revisa:</strong> ¿Los adjetivos concuerdan en género y número? ¿Usaste <em>soy / es / son</em> correctamente? ¿Incluiste los acentos necesarios?
+    </div>
+    <div class="footer-actions">
+      <button class="reset" onclick="clearWriting()">Borrar texto</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 style="margin-top:0">Finalizar práctica</h2>
+    <p class="instructions">Puedes volver a cualquier ejercicio y corregirlo. El progreso se actualiza cuando una respuesta autocorregible es correcta.</p>
+    <div class="footer-actions">
+      <button class="reset" onclick="resetAll()">Reiniciar toda la práctica</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const solved = new Set();
+  const TOTAL = 25;
+
+  function normalize(s){
+    return (s || "").trim().toLowerCase().replace(/\s+/g," ");
+  }
+
+  function markCorrect(container){
+    const key = container.dataset.key || ("q" + [...document.querySelectorAll(".q")].indexOf(container));
+    container.dataset.key = key;
+    solved.add(key);
+    updateProgress();
+  }
+
+  function unmark(container){
+    const key = container.dataset.key;
+    if(key){ solved.delete(key); updateProgress(); }
+  }
+
+  function setFeedback(container, ok, msg){
+    const fb = container.querySelector(".feedback");
+    fb.textContent = msg;
+    fb.className = "feedback " + (ok ? "good" : "bad");
+    if(ok) markCorrect(container); else unmark(container);
+  }
+
+  function checkSelect(btn){
+    const q = btn.closest(".q");
+    const sel = q.querySelector("select");
+    const ok = normalize(sel.value) === normalize(sel.dataset.answer);
+    setFeedback(q, ok, ok ? "✓ ¡Correcto!" : "✕ Inténtalo otra vez.");
+  }
+
+  function checkMultiSelect(btn){
+    const q = btn.closest(".q");
+    const sels = [...q.querySelectorAll("select")];
+    const ok = sels.every(s => normalize(s.value) === normalize(s.dataset.answer));
+    setFeedback(q, ok, ok ? "✓ ¡Correcto!" : "✕ Revisa las dos palabras.");
+  }
+
+  function checkText(btn){
+    const q = btn.closest(".q");
+    const input = q.querySelector("input");
+    const ok = normalize(input.value) === normalize(input.dataset.answer);
+    setFeedback(q, ok, ok ? "✓ ¡Correcto!" : "✕ Inténtalo otra vez. Revisa concordancia, verbo y acentos.");
+  }
+
+  function updateProgress(){
+    const n = solved.size;
+    document.getElementById("progressBar").style.width = Math.min(100,(n/TOTAL)*100) + "%";
+    document.getElementById("progressText").textContent = `${n} de ${TOTAL} respuestas correctas`;
+  }
+
+  function clearWriting(){
+    document.getElementById("finalWriting").value = "";
+  }
+
+  function resetAll(){
+    document.querySelectorAll("select").forEach(x=>x.selectedIndex=0);
+    document.querySelectorAll('input[type="text"]').forEach(x=>x.value="");
+    document.querySelectorAll(".feedback").forEach(x=>{x.textContent="";x.className="feedback"});
+    document.getElementById("finalWriting").value="";
+    solved.clear();
+    updateProgress();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+</script>
 </body>
 </html>
