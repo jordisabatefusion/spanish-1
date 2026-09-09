@@ -1,1 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>2. Despedidas — Spanish 1</title>
+
+<style>
+
+:root{
+  --turq:#2fb0b7;
+  --turq-dark:#1d8f96;
+  --gold:#f2a900;
+  --ink:#1f2933;
+  --muted:#667085;
+  --line:#d9e1e7;
+  --soft:#f6f9fb;
+  --good:#18794e;
+  --bad:#b42318;
+  --white:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#eef3f6;
+  color:var(--ink);
+}
+
+.page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
+
+
+/* HEADER */
+
+.hero{
+  background:linear-gradient(
+    135deg,
+    var(--turq-dark),
+    var(--turq)
+  );
+
+  color:white;
+  border-radius:22px;
+  padding:28px;
+
+  box-shadow:
+  0 12px 30px rgba(31,41,51,.12);
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  opacity:.9;
+}
+
+h1{
+  margin:7px 0 8px;
+  font-size:clamp(34px,5vw,54px);
+  line-height:1;
+}
+
+.hero p{
+  margin:0;
+  max-width:760px;
+  font-size:17px;
+  line-height:1.5;
+}
+
+
+/* PROGRESS */
+
+.progress-wrap{
+  margin-top:20px;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+
+  background:
+  rgba(255,255,255,.28);
+
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#progressBar{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.25s;
+}
+
+
+/* CARDS */
+
+.card{
+  margin-top:22px;
+  background:white;
+
+  border:
+  1px solid var(--line);
+
+  border-radius:20px;
+  padding:24px;
+
+  box-shadow:
+  0 8px 20px rgba(31,41,51,.06);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.num{
+  width:40px;
+  height:40px;
+
+  border-radius:50%;
+
+  background:var(--gold);
+
+  display:grid;
+  place-items:center;
+
+  font-weight:900;
+  color:#2c2400;
+
+  flex:0 0 auto;
+}
+
+h2{
+  margin:0;
+  font-size:26px;
+}
+
+.instructions{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+
+
+/* VOCABULARY */
+
+.vocab-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,minmax(0,1fr));
+
+  gap:14px;
+}
+
+.vocab{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  background:var(--soft);
+
+  border:
+  1px solid var(--line);
+
+  border-radius:14px;
+
+  padding:18px;
+}
+
+.spanish{
+  color:var(--turq-dark);
+  font-size:21px;
+  font-weight:800;
+}
+
+.english{
+  color:var(--muted);
+  font-size:16px;
+  text-align:right;
+}
+
+.tip{
+  margin-top:18px;
+
+  background:#fff8df;
+
+  border-left:
+  5px solid var(--gold);
+
+  padding:14px 16px;
+
+  border-radius:10px;
+
+  line-height:1.5;
+}
+
+
+/* ACTIVITY */
+
+.activity-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,minmax(0,1fr));
+
+  gap:16px;
+}
+
+.question{
+  border:
+  1px solid var(--line);
+
+  border-radius:16px;
+
+  padding:20px;
+
+  background:white;
+}
+
+.question-number{
+  display:inline-block;
+
+  background:#e7f7f8;
+
+  color:var(--turq-dark);
+
+  border-radius:999px;
+
+  padding:6px 10px;
+
+  font-size:12px;
+  font-weight:900;
+
+  letter-spacing:.07em;
+
+  text-transform:uppercase;
+
+  margin-bottom:12px;
+}
+
+.situation{
+  font-size:18px;
+  font-weight:700;
+  line-height:1.45;
+
+  min-height:52px;
+
+  margin-bottom:14px;
+}
+
+select{
+  width:100%;
+
+  border:
+  1.5px solid #b8c5cf;
+
+  border-radius:10px;
+
+  padding:12px;
+
+  font-size:16px;
+
+  background:white;
+}
+
+select:focus{
+  outline:
+  3px solid rgba(47,176,183,.18);
+
+  border-color:var(--turq);
+}
+
+.feedback{
+  min-height:25px;
+  margin-top:9px;
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.good{
+  color:var(--good);
+}
+
+.bad{
+  color:var(--bad);
+}
+
+
+/* BUTTON */
+
+button{
+  border:0;
+
+  border-radius:11px;
+
+  padding:12px 18px;
+
+  font-size:15px;
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.check{
+  background:var(--turq);
+  color:white;
+}
+
+.check:hover{
+  background:var(--turq-dark);
+}
+
+.reset{
+  background:#e9eef2;
+  color:var(--ink);
+}
+
+.actions{
+  margin-top:18px;
+
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+
+/* RESULTS */
+
+.summary{
+  text-align:center;
+
+  padding:25px;
+
+  background:var(--soft);
+
+  border:
+  1px solid var(--line);
+
+  border-radius:17px;
+}
+
+#score{
+  font-size:38px;
+  font-weight:900;
+  color:var(--turq-dark);
+
+  margin-bottom:5px;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:15px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .vocab-grid,
+  .activity-grid{
+    grid-template-columns:1fr;
+  }
+
+  .vocab{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .english{
+    text-align:left;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+<!-- HEADER -->
+
+<section class="hero">
+
+<div class="eyebrow">
+Spanish 1 • Interactive Practice
+</div>
+
+<h1>2. Despedidas</h1>
+
+<p>
+Learn common Spanish expressions for saying goodbye
+and choose the most appropriate expression for each situation.
+</p>
+
+
+<div class="progress-wrap">
+
+<div class="progress-label">
+
+<span>Your progress</span>
+
+<span id="progressText">
+0 / 4 correct
+</span>
+
+</div>
+
+
+<div class="progress">
+
+<div id="progressBar"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- REFERENCE -->
+
+<section class="card">
+
+<div class="section-title">
+
+<div class="num">A</div>
+
+<h2>
+Adiós... y otras despedidas
+</h2>
+
+</div>
+
+
+<p class="instructions">
+
+Study these common Spanish goodbye expressions.
+You will use them in the activity below.
+
+</p>
+
+
+<div class="vocab-grid">
+
+
+<div class="vocab">
+
+<div class="spanish">
+Adiós.
+</div>
+
+<div class="english">
+Goodbye.
+</div>
+
+</div>
+
+
+<div class="vocab">
+
+<div class="spanish">
+Chao.
+</div>
+
+<div class="english">
+Goodbye (informal).
+</div>
+
+</div>
+
+
+<div class="vocab">
+
+<div class="spanish">
+Hasta pronto.
+</div>
+
+<div class="english">
+See you soon.
+</div>
+
+</div>
+
+
+<div class="vocab">
+
+<div class="spanish">
+Hasta luego.
+</div>
+
+<div class="english">
+See you later.
+</div>
+
+</div>
+
+
+<div class="vocab">
+
+<div class="spanish">
+Hasta mañana.
+</div>
+
+<div class="english">
+See you tomorrow.
+</div>
+
+</div>
+
+
+<div class="vocab">
+
+<div class="spanish">
+Hasta la vista.
+</div>
+
+<div class="english">
+See you.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="tip">
+
+<strong>Think about the situation:</strong>
+When will the people see each other again?
+The answer can help you choose the best expression.
+
+</div>
+
+</section>
+
+
+
+<!-- ACTIVITY -->
+
+<section class="card">
+
+<div class="section-title">
+
+<div class="num">1</div>
+
+<h2>
+Despedidas
+</h2>
+
+</div>
+
+
+<p class="instructions">
+
+<strong>
+Choose an appropriate Spanish goodbye expression
+for each situation.
+</strong>
+
+</p>
+
+
+<div class="activity-grid">
+
+
+<!-- QUESTION 1 -->
+
+<div class="question">
+
+<div class="question-number">
+Situation 1
+</div>
+
+<div class="situation">
+
+They will see each other
+a little later.
+
+</div>
+
+
+<select id="q1">
+
+<option value="">
+Choose an answer
+</option>
+
+<option value="adios">
+Adiós.
+</option>
+
+<option value="chao">
+Chao.
+</option>
+
+<option value="pronto">
+Hasta pronto.
+</option>
+
+<option value="luego">
+Hasta luego.
+</option>
+
+<option value="manana">
+Hasta mañana.
+</option>
+
+<option value="vista">
+Hasta la vista.
+</option>
+
+</select>
+
+
+<div
+class="feedback"
+id="fb-q1">
+</div>
+
+</div>
+
+
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<div class="question-number">
+Situation 2
+</div>
+
+<div class="situation">
+
+You will see them
+later today.
+
+</div>
+
+
+<select id="q2">
+
+<option value="">
+Choose an answer
+</option>
+
+<option value="adios">
+Adiós.
+</option>
+
+<option value="chao">
+Chao.
+</option>
+
+<option value="pronto">
+Hasta pronto.
+</option>
+
+<option value="luego">
+Hasta luego.
+</option>
+
+<option value="manana">
+Hasta mañana.
+</option>
+
+<option value="vista">
+Hasta la vista.
+</option>
+
+</select>
+
+
+<div
+class="feedback"
+id="fb-q2">
+</div>
+
+</div>
+
+
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<div class="question-number">
+Situation 3
+</div>
+
+<div class="situation">
+
+You'll see them
+tomorrow.
+
+</div>
+
+
+<select id="q3">
+
+<option value="">
+Choose an answer
+</option>
+
+<option value="adios">
+Adiós.
+</option>
+
+<option value="chao">
+Chao.
+</option>
+
+<option value="pronto">
+Hasta pronto.
+</option>
+
+<option value="luego">
+Hasta luego.
+</option>
+
+<option value="manana">
+Hasta mañana.
+</option>
+
+<option value="vista">
+Hasta la vista.
+</option>
+
+</select>
+
+
+<div
+class="feedback"
+id="fb-q3">
+</div>
+
+</div>
+
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<div class="question-number">
+Situation 4
+</div>
+
+<div class="situation">
+
+They may not see
+each other again.
+
+</div>
+
+
+<select id="q4">
+
+<option value="">
+Choose an answer
+</option>
+
+<option value="adios">
+Adiós.
+</option>
+
+<option value="chao">
+Chao.
+</option>
+
+<option value="pronto">
+Hasta pronto.
+</option>
+
+<option value="luego">
+Hasta luego.
+</option>
+
+<option value="manana">
+Hasta mañana.
+</option>
+
+<option value="vista">
+Hasta la vista.
+</option>
+
+</select>
+
+
+<div
+class="feedback"
+id="fb-q4">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="check"
+onclick="checkAnswers()">
+
+Check Answers
+
+</button>
+
+
+<button
+class="reset"
+onclick="resetLesson()">
+
+Reset
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- RESULTS -->
+
+<section class="card">
+
+<div class="section-title">
+
+<div class="num">
+✓
+</div>
+
+<h2>
+Your Results
+</h2>
+
+</div>
+
+
+<div class="summary">
+
+<div id="score">
+
+0 / 4
+
+</div>
+
+
+<div id="scoreMessage">
+
+Complete the activity
+and check your answers.
+
+</div>
+
+</div>
+
+
+<div class="small">
+
+Practice activity only.
+Results are not automatically sent
+to the Canvas Gradebook.
+
+</div>
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+const answers = {
+
+q1:"pronto",
+
+q2:"luego",
+
+q3:"manana",
+
+q4:"adios"
+
+};
+
+
+function checkAnswers(){
+
+let correct = 0;
+
+
+Object.keys(answers).forEach(
+
+function(id){
+
+const select =
+document.getElementById(id);
+
+const feedback =
+document.getElementById(
+"fb-" + id
+);
+
+
+if(
+select.value ===
+answers[id]
+){
+
+feedback.textContent =
+"✓ Correct!";
+
+feedback.className =
+"feedback good";
+
+correct++;
+
+}
+
+else{
+
+feedback.textContent =
+"✕ Try again.";
+
+feedback.className =
+"feedback bad";
+
+}
+
+}
+
+);
+
+
+updateScore(correct);
+
+}
+
+
+
+function updateScore(correct){
+
+const total = 4;
+
+
+document.getElementById(
+"progressText"
+).textContent =
+
+correct +
+" / " +
+total +
+" correct";
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+
+(correct / total * 100)
++ "%";
+
+
+document.getElementById(
+"score"
+).textContent =
+
+correct +
+" / " +
+total;
+
+
+const message =
+document.getElementById(
+"scoreMessage"
+);
+
+
+if(correct === 4){
+
+message.textContent =
+"Excellent! You completed the activity.";
+
+}
+
+else if(correct >= 2){
+
+message.textContent =
+"Good work! Review the answers that still need correction.";
+
+}
+
+else{
+
+message.textContent =
+"Keep practicing. Use the reference above to help you.";
+
+}
+
+}
+
+
+
+function resetLesson(){
+
+document.querySelectorAll(
+"select"
+).forEach(
+
+function(select){
+
+select.selectedIndex = 0;
+
+}
+
+);
+
+
+document.querySelectorAll(
+".feedback"
+).forEach(
+
+function(feedback){
+
+feedback.textContent = "";
+
+feedback.className =
+"feedback";
+
+}
+
+);
+
+
+document.getElementById(
+"progressText"
+).textContent =
+"0 / 4 correct";
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+"0%";
+
+
+document.getElementById(
+"score"
+).textContent =
+"0 / 4";
+
+
+document.getElementById(
+"scoreMessage"
+).textContent =
+"Complete the activity and check your answers.";
+
+}
+
+</script>
+
+
+</body>
+</html>
