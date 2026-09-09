@@ -4,74 +4,1227 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>El alfabeto español — Spanish 1 Interactive Practice</title>
+
 <style>
-:root{--turq:#2fb0b7;--turq-dark:#1d8f96;--gold:#f2a900;--ink:#1f2933;--muted:#667085;--line:#d9e1e7;--soft:#f6f9fb;--good:#18794e;--bad:#b42318;--white:#fff}
-*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef3f6;color:var(--ink)}
-.page{max-width:1120px;margin:0 auto;padding:28px 20px 60px}.hero{background:linear-gradient(135deg,var(--turq-dark),var(--turq));color:#fff;border-radius:22px;padding:28px;box-shadow:0 12px 30px rgba(31,41,51,.12)}
-.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;opacity:.9}h1{margin:7px 0 8px;font-size:clamp(32px,5vw,54px);line-height:1}.hero p{margin:0;max-width:760px;font-size:17px;line-height:1.5}
-.progress-wrap{margin-top:20px}.progress-label{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:7px}.progress{width:100%;height:12px;background:rgba(255,255,255,.28);border-radius:999px;overflow:hidden}#progressBar{height:100%;width:0;background:var(--gold);transition:.25s}
-.card{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 8px 20px rgba(31,41,51,.06)}.section-title{display:flex;align-items:center;gap:12px;margin-bottom:7px}.num{width:38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:900;color:#2c2400;flex:0 0 auto}h2{margin:0;font-size:25px}.instructions{margin:0 0 20px;color:var(--muted);font-size:16px;line-height:1.5}.note{background:#fff8df;border-left:5px solid var(--gold);padding:13px 15px;border-radius:10px;margin:14px 0}
-.alphabet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-top:18px}.letter{border:1px solid var(--line);background:var(--soft);border-radius:12px;padding:11px 8px;text-align:center}.letter b{display:block;font-size:22px;color:var(--turq-dark)}.letter span{font-size:13px;color:var(--muted)}
-.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:15px}.rule{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--soft);line-height:1.45}
-.activity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.item{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff;min-width:0}.image-box{height:145px;display:flex;align-items:center;justify-content:center;background:var(--soft);border-radius:12px;margin-bottom:10px;overflow:hidden}.image-box img{max-width:92%;max-height:132px;width:auto;height:auto;object-fit:contain}.image-missing{color:var(--muted);font-size:13px;text-align:center;padding:12px}.word{font-size:20px;font-weight:800;margin:5px 0 9px}
-input,select{width:100%;border:1.5px solid #b8c5cf;border-radius:10px;padding:11px 12px;font-size:16px;background:#fff}input:focus,select:focus{outline:3px solid rgba(47,176,183,.18);border-color:var(--turq)}.feedback{min-height:23px;margin-top:8px;font-weight:800;font-size:14px}.good{color:var(--good)}.bad{color:var(--bad)}button{border:0;border-radius:11px;padding:11px 16px;font-size:15px;font-weight:800;cursor:pointer}.check{background:var(--turq);color:#fff;margin-top:13px}.check:hover{background:var(--turq-dark)}.reset{background:#e9eef2;color:var(--ink)}.section-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.match-card{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:15px;padding:12px}.match-card img{width:82px;height:82px;object-fit:contain;background:var(--soft);border-radius:10px}.k-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.sound-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sound-item{border:1px solid var(--line);border-radius:13px;padding:13px}.sound-item label{display:block;font-weight:800;margin-bottom:8px}.summary{text-align:center;padding:24px;border-radius:17px;background:var(--soft);border:1px solid var(--line);margin-top:18px}#score{font-size:34px;font-weight:900;color:var(--turq-dark)}.small{font-size:13px;color:var(--muted)}
-@media(max-width:850px){.activity-grid,.k-grid,.sound-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.activity-grid,.k-grid,.sound-grid,.match-grid{grid-template-columns:1fr}.match-card{grid-template-columns:72px 1fr}.match-card img{width:68px;height:68px}.card{padding:18px}}
+:root{
+  --turq:#2fb0b7;
+  --turq-dark:#1d8f96;
+  --gold:#f2a900;
+  --ink:#1f2933;
+  --muted:#667085;
+  --line:#d9e1e7;
+  --soft:#f6f9fb;
+  --good:#18794e;
+  --bad:#b42318;
+  --white:#fff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#eef3f6;
+  color:var(--ink);
+}
+
+.page{
+  max-width:1120px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--turq-dark),var(--turq));
+  color:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 30px rgba(31,41,51,.12);
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  opacity:.9;
+}
+
+h1{
+  margin:7px 0 8px;
+  font-size:clamp(32px,5vw,54px);
+  line-height:1;
+}
+
+.hero p{
+  margin:0;
+  max-width:760px;
+  font-size:17px;
+  line-height:1.5;
+}
+
+.progress-wrap{margin-top:20px}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+  background:rgba(255,255,255,.28);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#progressBar{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.25s;
+}
+
+.card{
+  margin-top:22px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 8px 20px rgba(31,41,51,.06);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:7px;
+}
+
+.num{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--gold);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#2c2400;
+  flex:0 0 auto;
+}
+
+h2{
+  margin:0;
+  font-size:25px;
+}
+
+.instructions{
+  margin:0 0 20px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+}
+
+.note{
+  background:#fff8df;
+  border-left:5px solid var(--gold);
+  padding:13px 15px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.alphabet-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:10px;
+  margin-top:18px;
+}
+
+.letter{
+  border:1px solid var(--line);
+  background:var(--soft);
+  border-radius:12px;
+  padding:11px 8px;
+  text-align:center;
+}
+
+.letter b{
+  display:block;
+  font-size:22px;
+  color:var(--turq-dark);
+}
+
+.letter span{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.rules{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.rule{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:var(--soft);
+  line-height:1.45;
+}
+
+.activity-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.item{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background:#fff;
+  min-width:0;
+}
+
+.image-box{
+  height:145px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--soft);
+  border-radius:12px;
+  margin-bottom:10px;
+  overflow:hidden;
+}
+
+.image-box img{
+  max-width:92%;
+  max-height:132px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.word{
+  font-size:20px;
+  font-weight:800;
+  margin:5px 0 9px;
+}
+
+input,select{
+  width:100%;
+  border:1.5px solid #b8c5cf;
+  border-radius:10px;
+  padding:11px 12px;
+  font-size:16px;
+  background:white;
+}
+
+input:focus,select:focus{
+  outline:3px solid rgba(47,176,183,.18);
+  border-color:var(--turq);
+}
+
+.feedback{
+  min-height:23px;
+  margin-top:8px;
+  font-weight:800;
+  font-size:14px;
+}
+
+.good{color:var(--good)}
+.bad{color:var(--bad)}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:11px 16px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.check{
+  background:var(--turq);
+  color:white;
+  margin-top:13px;
+}
+
+.check:hover{background:var(--turq-dark)}
+
+.reset{
+  background:#e9eef2;
+  color:var(--ink);
+}
+
+.section-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.match-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+
+.match-card{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:12px;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px;
+}
+
+.match-card img{
+  width:82px;
+  height:82px;
+  object-fit:contain;
+  background:var(--soft);
+  border-radius:10px;
+}
+
+.k-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+
+.sound-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+
+.sound-item{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:13px;
+}
+
+.sound-item label{
+  display:block;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.summary{
+  text-align:center;
+  padding:24px;
+  border-radius:17px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  margin-top:18px;
+}
+
+#score{
+  font-size:34px;
+  font-weight:900;
+  color:var(--turq-dark);
+}
+
+.small{
+  font-size:13px;
+  color:var(--muted);
+}
+
+@media(max-width:850px){
+  .activity-grid,.k-grid,.sound-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:560px){
+  .activity-grid,.k-grid,.sound-grid,.match-grid{
+    grid-template-columns:1fr;
+  }
+
+  .match-card{
+    grid-template-columns:72px 1fr;
+  }
+
+  .match-card img{
+    width:68px;
+    height:68px;
+  }
+
+  .card{padding:18px}
+}
 </style>
 </head>
+
 <body>
+
 <div class="page">
-<section class="hero"><div class="eyebrow">Spanish 1 • Interactive Practice</div><h1>1. El alfabeto español</h1><p>Practice Spanish letter names, spelling, rhymes, the K sound, and counting sounds in words.</p><div class="progress-wrap"><div class="progress-label"><span>Your progress</span><span id="progressText">0 / 30 correct</span></div><div class="progress"><div id="progressBar"></div></div></div></section>
 
-<section class="card"><div class="section-title"><div class="num">A</div><h2>Spanish Alphabet Reference</h2></div><p class="instructions">Use this chart whenever you need help spelling a word aloud in Spanish.</p><div class="alphabet-grid" id="alphabet"></div><div class="note"><strong>Example:</strong> Susana = <em>ese • u • ese • a • ene • a</em></div></section>
+<section class="hero">
 
-<section class="card"><div class="section-title"><div class="num">B</div><h2>Pronunciation Reference</h2></div><p class="instructions">Read these important pronunciation rules before completing Activities 3 and 4.</p><div class="rules"><div class="rule"><strong>H is silent.</strong><br>Example: <em>hola</em>.</div><div class="rule"><strong>U is silent in gue / gui.</strong><br>The <em>gu</em> represents the hard G sound.</div><div class="rule"><strong>U is silent in que / qui.</strong><br>The <em>qu</em> represents the K sound.</div><div class="rule"><strong>ch, ll, rr</strong> each represent one sound in this activity.</div></div></section>
-
-<section class="card" id="act1"><div class="section-title"><div class="num">1</div><h2>Deletreamos</h2></div><p class="instructions"><strong>Say each word aloud. Then type how you would spell it using the Spanish names of the letters.</strong> Separate the letter names with spaces. Example: <em>vaca → uve a ce a</em>.</p><div class="activity-grid">
-<div class="item"><div class="image-box"><img src="vaca.png" alt="vaca"></div><div class="word">vaca</div><input id="spell-vaca" autocomplete="off" placeholder="uve a ce a"><div class="feedback" id="fb-spell-vaca"></div></div>
-<div class="item"><div class="image-box"><img src="gota.png" alt="gota"></div><div class="word">gota</div><input id="spell-gota" autocomplete="off" placeholder="Spell in Spanish"><div class="feedback" id="fb-spell-gota"></div></div>
-<div class="item"><div class="image-box"><img src="taxi.png" alt="taxi"></div><div class="word">taxi</div><input id="spell-taxi" autocomplete="off" placeholder="Spell in Spanish"><div class="feedback" id="fb-spell-taxi"></div></div>
-<div class="item"><div class="image-box"><img src="perra.png" alt="perra"></div><div class="word">perra</div><input id="spell-perra" autocomplete="off" placeholder="Spell in Spanish"><div class="feedback" id="fb-spell-perra"></div></div>
-<div class="item"><div class="image-box"><img src="niño.png" alt="niño"></div><div class="word">niño</div><input id="spell-nino" autocomplete="off" placeholder="Spell in Spanish"><div class="feedback" id="fb-spell-nino"></div></div>
-<div class="item"><div class="image-box"><div class="image-missing"><strong>cheque</strong><br>Upload <code>cheque.png</code> to show an image here.</div></div><div class="word">cheque</div><input id="spell-cheque" autocomplete="off" placeholder="Spell in Spanish"><div class="feedback" id="fb-spell-cheque"></div></div>
-</div><div class="section-actions"><button class="check" onclick="checkSpelling()">Check Activity 1</button></div></section>
-
-<section class="card" id="act2"><div class="section-title"><div class="num">2</div><h2>Rimas</h2></div><p class="instructions"><strong>Match each word in Column A with the word in Column B that rhymes with it.</strong></p><div class="match-grid">
-<div class="match-card"><img src="gato.png" alt="gato"><div><div class="word">gato</div><select id="r-gato"><option value="">Choose a rhyme</option><option>amor</option><option>cereza</option><option>trampolín</option><option>pato</option></select><div class="feedback" id="fb-r-gato"></div></div></div>
-<div class="match-card"><img src="flor.png" alt="flor"><div><div class="word">flor</div><select id="r-flor"><option value="">Choose a rhyme</option><option>amor</option><option>cereza</option><option>trampolín</option><option>pato</option></select><div class="feedback" id="fb-r-flor"></div></div></div>
-<div class="match-card"><img src="delfín.png" alt="delfín"><div><div class="word">delfín</div><select id="r-delfin"><option value="">Choose a rhyme</option><option>amor</option><option>cereza</option><option>trampolín</option><option>pato</option></select><div class="feedback" id="fb-r-delfin"></div></div></div>
-<div class="match-card"><img src="cabeza.png" alt="cabeza"><div><div class="word">cabeza</div><select id="r-cabeza"><option value="">Choose a rhyme</option><option>amor</option><option>cereza</option><option>trampolín</option><option>pato</option></select><div class="feedback" id="fb-r-cabeza"></div></div></div>
-</div><div class="note"><strong>Column B visual reference:</strong><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px"><div style="text-align:center"><img src="amor.png" alt="amor" style="width:75px;height:75px;object-fit:contain"><br><b>amor</b></div><div style="text-align:center"><img src="cereza.png" alt="cereza" style="width:75px;height:75px;object-fit:contain"><br><b>cereza</b></div><div style="text-align:center"><img src="trampolin.png" alt="trampolín" style="width:75px;height:75px;object-fit:contain"><br><b>trampolín</b></div><div style="text-align:center"><img src="pato.png" alt="pato" style="width:75px;height:75px;object-fit:contain"><br><b>pato</b></div></div></div><div class="section-actions"><button class="check" onclick="checkRhymes()">Check Activity 2</button></div></section>
-
-<section class="card" id="act3"><div class="section-title"><div class="num">3</div><h2>El sonido K de casa</h2></div><p class="instructions"><strong>Choose the letter that represents the K sound in each word.</strong> Then answer the final question.</p><div class="k-grid">
-<div class="item"><div class="image-box"><img src="calor.png" alt="calor"></div><div class="word">calor</div><select id="k-calor"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-calor"></div></div>
-<div class="item"><div class="image-box"><img src="cocina.png" alt="cocina"></div><div class="word">cocina</div><select id="k-cocina"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-cocina"></div></div>
-<div class="item"><div class="image-box"><img src="capital.png" alt="capital"></div><div class="word">capital</div><select id="k-capital"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-capital"></div></div>
-<div class="item"><div class="image-box"><img src="chaqueta.png" alt="chaqueta"></div><div class="word">chaqueta</div><select id="k-chaqueta"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-chaqueta"></div></div>
-<div class="item"><div class="image-box"><img src="kilometro.png" alt="kilómetro"></div><div class="word">kilómetro</div><select id="k-kilometro"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-kilometro"></div></div>
-<div class="item"><div class="image-box"><img src="kilo.png" alt="kilo"></div><div class="word">kilo</div><select id="k-kilo"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-kilo"></div></div>
-<div class="item"><div class="image-box"><img src="chicas.png" alt="chicas"></div><div class="word">chicas</div><select id="k-chicas"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-chicas"></div></div>
-<div class="item"><div class="image-box"><img src="quince.png" alt="quince"></div><div class="word">quince</div><select id="k-quince"><option value="">Choose</option><option>c</option><option>q</option><option>k</option></select><div class="feedback" id="fb-k-quince"></div></div>
-</div><div class="item" style="margin-top:16px"><div class="word" style="font-size:17px">How many letters can represent the K sound in Spanish?</div><select id="k-count"><option value="">Choose</option><option>1</option><option>2</option><option>3</option><option>4</option></select><div class="feedback" id="fb-k-count"></div><div class="small">Think about the letters used in the words above.</div></div><div class="section-actions"><button class="check" onclick="checkK()">Check Activity 3</button></div></section>
-
-<section class="card" id="act4"><div class="section-title"><div class="num">4</div><h2>¡A contar!</h2></div><p class="instructions"><strong>Write the number of sounds you hear in each Spanish word.</strong> Remember: <em>h</em> can be silent, <em>u</em> can be silent in <em>que/qui</em> and <em>gue/gui</em>, and <em>ch, ll, rr</em> count as one sound in this activity.</p><div class="sound-grid" id="soundGrid"></div><div class="section-actions"><button class="check" onclick="checkSounds()">Check Activity 4</button></div></section>
-
-<section class="card"><div class="section-title"><div class="num">✓</div><h2>Your Results</h2></div><div class="summary"><div id="score">0 / 30</div><div id="scoreMessage">Complete the activities and check your answers.</div><div class="section-actions" style="justify-content:center"><button class="reset" onclick="resetAll()">Reset Practice</button></div></div><p class="small" style="margin-top:16px">Practice activity only. Results are not automatically sent to the Canvas Gradebook.</p></section>
+<div class="eyebrow">
+Spanish 1 • Interactive Practice
 </div>
+
+<h1>1. El alfabeto español</h1>
+
+<p>
+Practice Spanish letter names, spelling, rhymes, the K sound,
+and counting sounds in words.
+</p>
+
+<div class="progress-wrap">
+
+<div class="progress-label">
+<span>Your progress</span>
+<span id="progressText">0 / 30 correct</span>
+</div>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ALPHABET -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">A</div>
+<h2>Spanish Alphabet Reference</h2>
+</div>
+
+<p class="instructions">
+Use this chart whenever you need help spelling a word aloud in Spanish.
+</p>
+
+<div class="alphabet-grid" id="alphabet"></div>
+
+<div class="note">
+<strong>Example:</strong>
+Susana = <em>ese • u • ese • a • ene • a</em>
+</div>
+
+</section>
+
+
+<!-- PRONUNCIATION -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">B</div>
+<h2>Pronunciation Reference</h2>
+</div>
+
+<p class="instructions">
+Read these important pronunciation rules before completing Activities 3 and 4.
+</p>
+
+<div class="rules">
+
+<div class="rule">
+<strong>H is silent.</strong><br>
+Example: <em>hola</em>.
+</div>
+
+<div class="rule">
+<strong>U is silent in gue / gui.</strong><br>
+The <em>gu</em> represents the hard G sound.
+</div>
+
+<div class="rule">
+<strong>U is silent in que / qui.</strong><br>
+The <em>qu</em> represents the K sound.
+</div>
+
+<div class="rule">
+<strong>ch, ll, rr</strong> each represent one sound in this activity.
+</div>
+
+</div>
+</section>
+
+
+<!-- ACTIVITY 1 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">1</div>
+<h2>Deletreamos</h2>
+</div>
+
+<p class="instructions">
+<strong>Say each word aloud. Then type how you would spell it using the Spanish names of the letters.</strong>
+Separate the letter names with spaces.
+Example: <em>vaca → uve a ce a</em>.
+</p>
+
+<div class="activity-grid">
+
+
+<div class="item">
+<div class="image-box">
+<img src="vaca.png" alt="vaca">
+</div>
+<div class="word">vaca</div>
+<input id="spell-vaca" placeholder="uve a ce a">
+<div class="feedback" id="fb-spell-vaca"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box">
+<img src="gota.png" alt="gota">
+</div>
+<div class="word">gota</div>
+<input id="spell-gota" placeholder="Spell in Spanish">
+<div class="feedback" id="fb-spell-gota"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box">
+<img src="taxi.png" alt="taxi">
+</div>
+<div class="word">taxi</div>
+<input id="spell-taxi" placeholder="Spell in Spanish">
+<div class="feedback" id="fb-spell-taxi"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box">
+<img src="perra.png" alt="perra">
+</div>
+<div class="word">perra</div>
+<input id="spell-perra" placeholder="Spell in Spanish">
+<div class="feedback" id="fb-spell-perra"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box">
+<img src="nino.png" alt="niño">
+</div>
+<div class="word">niño</div>
+<input id="spell-nino" placeholder="Spell in Spanish">
+<div class="feedback" id="fb-spell-nino"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box">
+<img src="cheque.png" alt="cheque">
+</div>
+<div class="word">cheque</div>
+<input id="spell-cheque" placeholder="Spell in Spanish">
+<div class="feedback" id="fb-spell-cheque"></div>
+</div>
+
+</div>
+
+<div class="section-actions">
+<button class="check" onclick="checkSpelling()">Check Activity 1</button>
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 2 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">2</div>
+<h2>Rimas</h2>
+</div>
+
+<p class="instructions">
+<strong>Match each word in Column A with the word in Column B that rhymes with it.</strong>
+</p>
+
+<div class="match-grid">
+
+
+<div class="match-card">
+
+<img src="gato.png" alt="gato">
+
+<div>
+<div class="word">gato</div>
+
+<select id="r-gato">
+<option value="">Choose a rhyme</option>
+<option>amor</option>
+<option>cereza</option>
+<option>trampolín</option>
+<option>pato</option>
+</select>
+
+<div class="feedback" id="fb-r-gato"></div>
+</div>
+
+</div>
+
+
+<div class="match-card">
+
+<img src="flor.png" alt="flor">
+
+<div>
+<div class="word">flor</div>
+
+<select id="r-flor">
+<option value="">Choose a rhyme</option>
+<option>amor</option>
+<option>cereza</option>
+<option>trampolín</option>
+<option>pato</option>
+</select>
+
+<div class="feedback" id="fb-r-flor"></div>
+</div>
+
+</div>
+
+
+<div class="match-card">
+
+<img src="delfin.png" alt="delfín">
+
+<div>
+<div class="word">delfín</div>
+
+<select id="r-delfin">
+<option value="">Choose a rhyme</option>
+<option>amor</option>
+<option>cereza</option>
+<option>trampolín</option>
+<option>pato</option>
+</select>
+
+<div class="feedback" id="fb-r-delfin"></div>
+</div>
+
+</div>
+
+
+<div class="match-card">
+
+<img src="cabeza.png" alt="cabeza">
+
+<div>
+<div class="word">cabeza</div>
+
+<select id="r-cabeza">
+<option value="">Choose a rhyme</option>
+<option>amor</option>
+<option>cereza</option>
+<option>trampolín</option>
+<option>pato</option>
+</select>
+
+<div class="feedback" id="fb-r-cabeza"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="note">
+
+<strong>Column B visual reference:</strong>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:10px;
+margin-top:10px;
+">
+
+<div style="text-align:center">
+<img src="amor.png"
+alt="amor"
+style="width:75px;height:75px;object-fit:contain">
+<br><b>amor</b>
+</div>
+
+<div style="text-align:center">
+<img src="cereza.png"
+alt="cereza"
+style="width:75px;height:75px;object-fit:contain">
+<br><b>cereza</b>
+</div>
+
+<div style="text-align:center">
+<img src="trampolin.png"
+alt="trampolín"
+style="width:75px;height:75px;object-fit:contain">
+<br><b>trampolín</b>
+</div>
+
+<div style="text-align:center">
+<img src="pato.png"
+alt="pato"
+style="width:75px;height:75px;object-fit:contain">
+<br><b>pato</b>
+</div>
+
+</div>
+</div>
+
+<div class="section-actions">
+<button class="check" onclick="checkRhymes()">Check Activity 2</button>
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 3 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">3</div>
+<h2>El sonido K de casa</h2>
+</div>
+
+<p class="instructions">
+<strong>Choose the letter that represents the K sound in each word.</strong>
+Then answer the final question.
+</p>
+
+<div class="k-grid">
+
+
+<div class="item">
+<div class="image-box"><img src="calor.png" alt="calor"></div>
+<div class="word">calor</div>
+<select id="k-calor">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-calor"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="cocina.png" alt="cocina"></div>
+<div class="word">cocina</div>
+<select id="k-cocina">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-cocina"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="capital.png" alt="capital"></div>
+<div class="word">capital</div>
+<select id="k-capital">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-capital"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="chaqueta.png" alt="chaqueta"></div>
+<div class="word">chaqueta</div>
+<select id="k-chaqueta">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-chaqueta"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="kilometro.png" alt="kilómetro"></div>
+<div class="word">kilómetro</div>
+<select id="k-kilometro">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-kilometro"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="kilo.png" alt="kilo"></div>
+<div class="word">kilo</div>
+<select id="k-kilo">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-kilo"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="chicas.png" alt="chicas"></div>
+<div class="word">chicas</div>
+<select id="k-chicas">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-chicas"></div>
+</div>
+
+
+<div class="item">
+<div class="image-box"><img src="quince.png" alt="quince"></div>
+<div class="word">quince</div>
+<select id="k-quince">
+<option value="">Choose</option>
+<option>c</option>
+<option>q</option>
+<option>k</option>
+</select>
+<div class="feedback" id="fb-k-quince"></div>
+</div>
+
+</div>
+
+
+<div class="item" style="margin-top:16px">
+
+<div class="word" style="font-size:17px">
+How many letters can represent the K sound in Spanish?
+</div>
+
+<select id="k-count">
+<option value="">Choose</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+
+<div class="feedback" id="fb-k-count"></div>
+
+<div class="small">
+Think about the letters used in the words above.
+</div>
+
+</div>
+
+<div class="section-actions">
+<button class="check" onclick="checkK()">Check Activity 3</button>
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 4 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">4</div>
+<h2>¡A contar!</h2>
+</div>
+
+<p class="instructions">
+<strong>Write the number of sounds you hear in each Spanish word.</strong>
+Remember: <em>h</em> can be silent,
+<em>u</em> can be silent in <em>que/qui</em> and <em>gue/gui</em>,
+and <em>ch, ll, rr</em> count as one sound in this activity.
+</p>
+
+<div class="sound-grid" id="soundGrid"></div>
+
+<div class="section-actions">
+<button class="check" onclick="checkSounds()">Check Activity 4</button>
+</div>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">✓</div>
+<h2>Your Results</h2>
+</div>
+
+<div class="summary">
+
+<div id="score">0 / 30</div>
+
+<div id="scoreMessage">
+Complete the activities and check your answers.
+</div>
+
+<div class="section-actions" style="justify-content:center">
+
+<button class="reset" onclick="resetAll()">
+Reset Practice
+</button>
+
+</div>
+
+</div>
+
+<p class="small" style="margin-top:16px">
+Practice activity only. Results are not automatically sent to the Canvas Gradebook.
+</p>
+
+</section>
+
+</div>
+
+
 <script>
-const alphabet=[['a','a'],['b','be'],['c','ce'],['d','de'],['e','e'],['f','efe'],['g','ge'],['h','hache'],['i','i'],['j','jota'],['k','ka'],['l','ele'],['m','eme'],['n','ene'],['ñ','eñe'],['o','o'],['p','pe'],['q','cu'],['r','erre'],['s','ese'],['t','te'],['u','u'],['v','uve'],['w','uve doble'],['x','equis'],['y','ye'],['z','zeta']];
-document.getElementById('alphabet').innerHTML=alphabet.map(([l,n])=>`<div class="letter"><b>${l}</b><span>${n}</span></div>`).join('');
-const sounds={chico:4,silla:4,queso:4,juguete:6,hijo:3,oso:3,cheque:4,español:7,hermano:6,casa:4,anillo:5,amor:4};
-document.getElementById('soundGrid').innerHTML=Object.keys(sounds).map(w=>`<div class="sound-item"><label for="s-${w}">${w}</label><input id="s-${w}" type="number" min="1" max="12" inputmode="numeric" placeholder="#"><div class="feedback" id="fb-s-${w}"></div></div>`).join('');
-const correctState=new Set();
-function normalize(s){return(s||'').toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;·•\-]+/g,' ').replace(/\s+/g,' ')}
-function mark(id,ok,key){const fb=document.getElementById('fb-'+id);if(ok){fb.textContent='✓ Correct!';fb.className='feedback good';correctState.add(key)}else{fb.textContent='✕ Try again.';fb.className='feedback bad';correctState.delete(key)}updateProgress()}
-function checkSpelling(){const answers={'spell-vaca':['uve a ce a'],'spell-gota':['ge o te a'],'spell-taxi':['te a equis i'],'spell-perra':['pe e erre erre a'],'spell-nino':['ene i eñe o','ene i ene o'],'spell-cheque':['ce hache e cu u e']};Object.entries(answers).forEach(([id,vals])=>{const v=normalize(document.getElementById(id).value);mark(id,vals.map(normalize).includes(v),id)})}
-function checkRhymes(){const ans={'r-gato':'pato','r-flor':'amor','r-delfin':'trampolín','r-cabeza':'cereza'};Object.entries(ans).forEach(([id,a])=>mark(id,document.getElementById(id).value===a,id))}
-function checkK(){const ans={'k-calor':'c','k-cocina':'c','k-capital':'c','k-chaqueta':'q','k-kilometro':'k','k-kilo':'k','k-chicas':'c','k-quince':'q','k-count':'3'};Object.entries(ans).forEach(([id,a])=>mark(id,document.getElementById(id).value===a,id))}
-function checkSounds(){Object.entries(sounds).forEach(([w,a])=>{const id='s-'+w;mark(id,Number(document.getElementById(id).value)===a,id)})}
-function updateProgress(){const n=correctState.size,total=30;document.getElementById('progressText').textContent=`${n} / ${total} correct`;document.getElementById('progressBar').style.width=`${(n/total)*100}%`;document.getElementById('score').textContent=`${n} / ${total}`;const msg=document.getElementById('scoreMessage');if(n===total)msg.textContent='Excellent! You completed all four activities.';else if(n>=24)msg.textContent='Great work! Review the few answers that still need correction.';else if(n>0)msg.textContent='Keep going. Correct answers stay in your progress total.';else msg.textContent='Complete the activities and check your answers.'}
-function resetAll(){document.querySelectorAll('input').forEach(x=>x.value='');document.querySelectorAll('select').forEach(x=>x.selectedIndex=0);document.querySelectorAll('.feedback').forEach(x=>{x.textContent='';x.className='feedback'});correctState.clear();updateProgress();window.scrollTo({top:0,behavior:'smooth'})}
+
+const alphabet = [
+['a','a'],
+['b','be'],
+['c','ce'],
+['d','de'],
+['e','e'],
+['f','efe'],
+['g','ge'],
+['h','hache'],
+['i','i'],
+['j','jota'],
+['k','ka'],
+['l','ele'],
+['m','eme'],
+['n','ene'],
+['ñ','eñe'],
+['o','o'],
+['p','pe'],
+['q','cu'],
+['r','erre'],
+['s','ese'],
+['t','te'],
+['u','u'],
+['v','uve'],
+['w','uve doble'],
+['x','equis'],
+['y','ye'],
+['z','zeta']
+];
+
+document.getElementById('alphabet').innerHTML =
+alphabet.map(([l,n]) =>
+`<div class="letter">
+<b>${l}</b>
+<span>${n}</span>
+</div>`
+).join('');
+
+
+const sounds = {
+chico:4,
+silla:4,
+queso:4,
+juguete:6,
+hijo:3,
+oso:3,
+cheque:4,
+español:7,
+hermano:6,
+casa:4,
+anillo:5,
+amor:4
+};
+
+
+document.getElementById('soundGrid').innerHTML =
+Object.keys(sounds).map(w =>
+`<div class="sound-item">
+
+<label for="s-${w}">
+${w}
+</label>
+
+<input
+id="s-${w}"
+type="number"
+min="1"
+max="12"
+inputmode="numeric"
+placeholder="#">
+
+<div class="feedback"
+id="fb-s-${w}">
+</div>
+
+</div>`
+).join('');
+
+
+const correctState = new Set();
+
+
+function normalize(s){
+
+return (s||'')
+.toLowerCase()
+.trim()
+.normalize('NFD')
+.replace(/[\u0300-\u036f]/g,'')
+.replace(/[.,;·•\-]+/g,' ')
+.replace(/\s+/g,' ');
+
+}
+
+
+function mark(id,ok,correctKey){
+
+const fb =
+document.getElementById('fb-'+id);
+
+if(ok){
+
+fb.textContent='✓ Correct!';
+fb.className='feedback good';
+
+correctState.add(correctKey);
+
+}else{
+
+fb.textContent='✕ Try again.';
+fb.className='feedback bad';
+
+correctState.delete(correctKey);
+
+}
+
+updateProgress();
+
+}
+
+
+function checkSpelling(){
+
+const answers={
+
+'spell-vaca':
+['uve a ce a'],
+
+'spell-gota':
+['ge o te a'],
+
+'spell-taxi':
+['te a equis i'],
+
+'spell-perra':
+['pe e erre erre a'],
+
+'spell-nino':
+['ene i eñe o','ene i ene o'],
+
+'spell-cheque':
+['ce hache e cu u e']
+
+};
+
+Object.entries(answers).forEach(
+([id,vals])=>{
+
+const v =
+normalize(
+document.getElementById(id).value
+);
+
+mark(
+id,
+vals.map(normalize).includes(v),
+id
+);
+
+});
+
+}
+
+
+function checkRhymes(){
+
+const ans={
+
+'r-gato':'pato',
+'r-flor':'amor',
+'r-delfin':'trampolín',
+'r-cabeza':'cereza'
+
+};
+
+Object.entries(ans).forEach(
+([id,a])=>
+mark(
+id,
+document.getElementById(id).value===a,
+id
+)
+);
+
+}
+
+
+function checkK(){
+
+const ans={
+
+'k-calor':'c',
+'k-cocina':'c',
+'k-capital':'c',
+'k-chaqueta':'q',
+'k-kilometro':'k',
+'k-kilo':'k',
+'k-chicas':'c',
+'k-quince':'q',
+'k-count':'3'
+
+};
+
+Object.entries(ans).forEach(
+([id,a])=>
+mark(
+id,
+document.getElementById(id).value===a,
+id
+)
+);
+
+}
+
+
+function checkSounds(){
+
+Object.entries(sounds).forEach(
+([w,a])=>{
+
+const id='s-'+w;
+
+mark(
+id,
+Number(
+document.getElementById(id).value
+)===a,
+id
+);
+
+});
+
+}
+
+
+function updateProgress(){
+
+const n=correctState.size;
+const total=30;
+
+document.getElementById(
+'progressText'
+).textContent=
+`${n} / ${total} correct`;
+
+document.getElementById(
+'progressBar'
+).style.width=
+`${(n/total)*100}%`;
+
+document.getElementById(
+'score'
+).textContent=
+`${n} / ${total}`;
+
+const msg=
+document.getElementById(
+'scoreMessage'
+);
+
+if(n===total)
+
+msg.textContent=
+'Excellent! You completed all four activities.';
+
+else if(n>=24)
+
+msg.textContent=
+'Great work! Review the few answers that still need correction.';
+
+else if(n>0)
+
+msg.textContent=
+'Keep going. Correct answers stay in your progress total.';
+
+else
+
+msg.textContent=
+'Complete the activities and check your answers.';
+
+}
+
+
+function resetAll(){
+
+document.querySelectorAll(
+'input'
+).forEach(
+x=>x.value=''
+);
+
+document.querySelectorAll(
+'select'
+).forEach(
+x=>x.selectedIndex=0
+);
+
+document.querySelectorAll(
+'.feedback'
+).forEach(
+x=>{
+x.textContent='';
+x.className='feedback';
+}
+);
+
+correctState.clear();
+
+updateProgress();
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
 </script>
+
 </body>
 </html>
