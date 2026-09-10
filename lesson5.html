@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5. Saludos — Spanish 1</title>
+
+<style>
+:root{
+  --turq:#2fb0b7;
+  --turq-dark:#1d8f96;
+  --gold:#f2a900;
+  --ink:#1f2933;
+  --muted:#667085;
+  --line:#d9e1e7;
+  --soft:#f6f9fb;
+  --good:#18794e;
+  --bad:#b42318;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#eef3f6;
+  color:var(--ink);
+}
+
+.page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
+
+/* HEADER */
+
+.hero{
+  background:linear-gradient(135deg,var(--turq-dark),var(--turq));
+  color:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 30px rgba(31,41,51,.12);
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  opacity:.9;
+}
+
+h1{
+  margin:7px 0 8px;
+  font-size:clamp(34px,5vw,54px);
+  line-height:1;
+}
+
+.hero p{
+  margin:0;
+  max-width:760px;
+  font-size:17px;
+  line-height:1.5;
+}
+
+.progress-wrap{margin-top:20px;}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+  background:rgba(255,255,255,.28);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#progressBar{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.25s;
+}
+
+/* CARDS */
+
+.card{
+  margin-top:22px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 8px 20px rgba(31,41,51,.06);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.num{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--gold);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#2c2400;
+  flex:0 0 auto;
+}
+
+h2{
+  margin:0;
+  font-size:26px;
+}
+
+.instructions{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+
+/* VOCAB */
+
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.vocab{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+
+.spanish{
+  color:var(--turq-dark);
+  font-size:21px;
+  font-weight:800;
+}
+
+.english{
+  color:var(--muted);
+  text-align:right;
+}
+
+.tip{
+  margin-top:18px;
+  background:#fff8df;
+  border-left:5px solid var(--gold);
+  padding:14px 16px;
+  border-radius:10px;
+  line-height:1.5;
+}
+
+/* QUESTIONS */
+
+.questions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.question{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:18px;
+}
+
+.time{
+  font-size:23px;
+  font-weight:900;
+  color:var(--turq-dark);
+  margin-bottom:12px;
+}
+
+select,
+input,
+textarea{
+  width:100%;
+  border:1.5px solid #b8c5cf;
+  border-radius:10px;
+  padding:12px;
+  font-family:inherit;
+  font-size:16px;
+  background:white;
+}
+
+select:focus,
+input:focus,
+textarea:focus{
+  outline:3px solid rgba(47,176,183,.18);
+  border-color:var(--turq);
+}
+
+.feedback{
+  min-height:24px;
+  margin-top:8px;
+  font-size:14px;
+  font-weight:800;
+}
+
+.good{color:var(--good);}
+.bad{color:var(--bad);}
+
+/* RIGHT NOW */
+
+.now-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+/* DIALOGUE */
+
+.requirements{
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.requirements ul{
+  margin:8px 0 0;
+  padding-left:22px;
+  line-height:1.7;
+}
+
+textarea{
+  min-height:220px;
+  resize:vertical;
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.actions{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:12px 18px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.check{
+  background:var(--turq);
+  color:white;
+}
+
+.check:hover{
+  background:var(--turq-dark);
+}
+
+.reset{
+  background:#e9eef2;
+  color:var(--ink);
+}
+
+/* RESULTS */
+
+.summary{
+  text-align:center;
+  padding:25px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+
+#score{
+  font-size:38px;
+  font-weight:900;
+  color:var(--turq-dark);
+  margin-bottom:5px;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:15px;
+}
+
+@media(max-width:700px){
+  .vocab-grid,
+  .questions,
+  .now-grid{
+    grid-template-columns:1fr;
+  }
+
+  .vocab{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .english{text-align:left;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- HEADER -->
+
+<section class="hero">
+
+<div class="eyebrow">Spanish 1 • Interactive Practice</div>
+
+<h1>5. Saludos</h1>
+
+<p>
+Learn how to choose an appropriate Spanish greeting
+according to the time of day.
+</p>
+
+<div class="progress-wrap">
+
+<div class="progress-label">
+<span>Your progress</span>
+<span id="progressText">0 / 6 correct</span>
+</div>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REFERENCE -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">A</div>
+<h2>Saludos</h2>
+</div>
+
+<p class="instructions">
+Study these common Spanish greetings.
+</p>
+
+<div class="vocab-grid">
+
+<div class="vocab">
+<div class="spanish">Buenos días.</div>
+<div class="english">Good morning.</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Buenas tardes.</div>
+<div class="english">Good afternoon.</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Buenas noches.</div>
+<div class="english">Good evening / night.</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Hola.</div>
+<div class="english">Hello.</div>
+</div>
+
+</div>
+
+<div class="tip">
+<strong>Remember:</strong> <em>Hola</em> can be used at any time.
+For this activity, choose the greeting that best matches the time of day.
+</div>
+
+</section>
+
+
+<!-- EXERCISE 6 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">1</div>
+<h2>Saludos</h2>
+</div>
+
+<p class="instructions">
+<strong>Look at the time and choose the most appropriate greeting.</strong>
+</p>
+
+<div class="questions">
+
+<div class="question">
+<div class="time">1. 8:25 a.m.</div>
+<select id="q1">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q1"></div>
+</div>
+
+<div class="question">
+<div class="time">2. 11:45 p.m.</div>
+<select id="q2">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q2"></div>
+</div>
+
+<div class="question">
+<div class="time">3. 7:00 p.m.</div>
+<select id="q3">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q3"></div>
+</div>
+
+<div class="question">
+<div class="time">4. 4:15 p.m.</div>
+<select id="q4">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q4"></div>
+</div>
+
+<div class="question">
+<div class="time">5. 10:45 a.m.</div>
+<select id="q5">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q5"></div>
+</div>
+
+<div class="question">
+<div class="time">6. 12:20 p.m.</div>
+<select id="q6">
+<option value="">Choose a greeting</option>
+<option value="dias">Buenos días.</option>
+<option value="tardes">Buenas tardes.</option>
+<option value="noches">Buenas noches.</option>
+<option value="hola">Hola.</option>
+</select>
+<div class="feedback" id="fb-q6"></div>
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="check" onclick="checkAnswers()">
+Check Answers
+</button>
+
+<button class="reset" onclick="resetLesson()">
+Reset
+</button>
+
+</div>
+
+</section>
+
+
+<!-- RIGHT NOW -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">2</div>
+<h2>¿Y ahora?</h2>
+</div>
+
+<p class="instructions">
+<strong>Write the time and the greeting you would use right now.</strong>
+</p>
+
+<div class="now-grid">
+
+<div>
+<label><strong>Hora:</strong></label>
+<input type="text" placeholder="Example: 2:30 p.m.">
+</div>
+
+<div>
+<label><strong>Saludo:</strong></label>
+<select>
+<option value="">Choose a greeting</option>
+<option>Buenos días.</option>
+<option>Buenas tardes.</option>
+<option>Buenas noches.</option>
+<option>Hola.</option>
+</select>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DIALOGUE -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">3</div>
+<h2>Un diálogo</h2>
+</div>
+
+<p class="instructions">
+<strong>Write a short dialogue among three people meeting each other.</strong>
+Use greetings and introductions from this lesson and the previous lesson.
+</p>
+
+<div class="requirements">
+
+<strong>Your dialogue should include:</strong>
+
+<ul>
+<li>Three people</li>
+<li>At least one greeting</li>
+<li>Someone saying their name</li>
+<li>Someone introducing another person</li>
+<li>An expression such as <em>Mucho gusto</em>, <em>Encantado</em>, or <em>Encantada</em></li>
+</ul>
+
+</div>
+
+<textarea
+placeholder="Write your dialogue here...
+
+Example format:
+
+Ana: ...
+Carlos: ...
+Sofía: ..."></textarea>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">✓</div>
+<h2>Your Results</h2>
+</div>
+
+<div class="summary">
+
+<div id="score">0 / 6</div>
+
+<div id="scoreMessage">
+Complete the greeting activity and check your answers.
+</div>
+
+</div>
+
+<div class="small">
+The score above applies to the six greeting questions.
+The open-ended activities should be reviewed with your teacher.
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+const answers = {
+  q1:"dias",
+  q2:"noches",
+  q3:"noches",
+  q4:"tardes",
+  q5:"dias",
+  q6:"tardes"
+};
+
+function checkAnswers(){
+
+  let correct = 0;
+
+  Object.keys(answers).forEach(function(id){
+
+    const select = document.getElementById(id);
+    const feedback = document.getElementById("fb-" + id);
+
+    if(select.value === answers[id]){
+
+      feedback.textContent = "✓ Correct!";
+      feedback.className = "feedback good";
+      correct++;
+
+    } else {
+
+      feedback.textContent = "✕ Try again.";
+      feedback.className = "feedback bad";
+
+    }
+
+  });
+
+  updateScore(correct);
+}
+
+function updateScore(correct){
+
+  const total = 6;
+
+  document.getElementById("progressText").textContent =
+    correct + " / " + total + " correct";
+
+  document.getElementById("progressBar").style.width =
+    (correct / total * 100) + "%";
+
+  document.getElementById("score").textContent =
+    correct + " / " + total;
+
+  const message = document.getElementById("scoreMessage");
+
+  if(correct === total){
+
+    message.textContent =
+      "Excellent! You know which greeting to use at different times of day.";
+
+  } else if(correct >= 3){
+
+    message.textContent =
+      "Good work! Review the times that still need correction.";
+
+  } else {
+
+    message.textContent =
+      "Keep practicing. Use the greeting reference above to help you.";
+
+  }
+}
+
+function resetLesson(){
+
+  document.querySelectorAll("select").forEach(function(select){
+    select.selectedIndex = 0;
+  });
+
+  document.querySelectorAll("input").forEach(function(input){
+    input.value = "";
+  });
+
+  document.querySelectorAll("textarea").forEach(function(textarea){
+    textarea.value = "";
+  });
+
+  document.querySelectorAll(".feedback").forEach(function(feedback){
+    feedback.textContent = "";
+    feedback.className = "feedback";
+  });
+
+  document.getElementById("progressText").textContent =
+    "0 / 6 correct";
+
+  document.getElementById("progressBar").style.width =
+    "0%";
+
+  document.getElementById("score").textContent =
+    "0 / 6";
+
+  document.getElementById("scoreMessage").textContent =
+    "Complete the greeting activity and check your answers.";
+}
+
+</script>
+
+</body>
+</html>
