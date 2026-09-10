@@ -1,1 +1,1474 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>6. El salón de clase — Spanish 1</title>
+
+<style>
+:root{
+  --turq:#2fb0b7;
+  --turq-dark:#1d8f96;
+  --gold:#f2a900;
+  --ink:#1f2933;
+  --muted:#667085;
+  --line:#d9e1e7;
+  --soft:#f6f9fb;
+  --good:#18794e;
+  --bad:#b42318;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#eef3f6;
+  color:var(--ink);
+}
+
+.page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
+
+/* HEADER */
+
+.hero{
+  background:linear-gradient(135deg,var(--turq-dark),var(--turq));
+  color:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 30px rgba(31,41,51,.12);
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  opacity:.9;
+}
+
+h1{
+  margin:7px 0 8px;
+  font-size:clamp(34px,5vw,54px);
+  line-height:1;
+}
+
+.hero p{
+  margin:0;
+  max-width:800px;
+  font-size:17px;
+  line-height:1.5;
+}
+
+.progress-wrap{
+  margin-top:20px;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+  background:rgba(255,255,255,.28);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#progressBar{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.25s;
+}
+
+/* CARDS */
+
+.card{
+  margin-top:22px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 8px 20px rgba(31,41,51,.06);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.num{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--turq);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  flex:0 0 auto;
+}
+
+.ref-num{
+  background:var(--gold);
+  color:#2c2400;
+  border-radius:50%;
+}
+
+h2{
+  margin:0;
+  font-size:27px;
+}
+
+.instructions{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+
+/* VOCABULARY */
+
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 24px;
+}
+
+.vocab{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:9px 12px;
+  background:var(--soft);
+  border-radius:9px;
+}
+
+.spanish{
+  color:var(--turq-dark);
+  font-weight:800;
+}
+
+.english{
+  color:var(--muted);
+  font-style:italic;
+}
+
+/* ACTIVITY 10 */
+
+.label-layout{
+  display:grid;
+  grid-template-columns:1.25fr .95fr;
+  gap:25px;
+  align-items:start;
+}
+
+.classroom-image{
+  min-height:480px;
+  border:2px dashed #b9c7d2;
+  border-radius:16px;
+  background:#fafcfd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#8793a0;
+  padding:20px;
+  overflow:hidden;
+}
+
+.classroom-image img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+
+.answer-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 18px;
+}
+
+.answer-item{
+  display:grid;
+  grid-template-columns:30px 1fr;
+  gap:8px;
+  align-items:center;
+}
+
+.answer-item strong{
+  font-size:16px;
+}
+
+.answer-item input{
+  width:100%;
+  border:1.5px solid #b8c5cf;
+  border-radius:9px;
+  padding:10px;
+  font-size:15px;
+}
+
+/* ACTIVITY 11 */
+
+.situation-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.situation-card{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:18px;
+}
+
+.situation-number{
+  display:inline-block;
+  background:#e7f7f8;
+  color:var(--turq-dark);
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.situation-text{
+  font-size:17px;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:12px;
+}
+
+/* ACTIVITY 12 */
+
+.classify-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 20px;
+}
+
+.classify-item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:15px;
+}
+
+.classify-name{
+  font-size:17px;
+  font-weight:800;
+  color:var(--turq-dark);
+  margin-bottom:10px;
+}
+
+/* INPUTS */
+
+select,
+textarea{
+  width:100%;
+  border:1.5px solid #b8c5cf;
+  border-radius:9px;
+  padding:10px;
+  font-family:inherit;
+  font-size:15px;
+  background:white;
+}
+
+select:focus,
+input:focus,
+textarea:focus{
+  outline:3px solid rgba(47,176,183,.18);
+  border-color:var(--turq);
+}
+
+.feedback,
+.classify-feedback{
+  min-height:18px;
+  margin-top:7px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.feedback{
+  grid-column:2;
+}
+
+.good{
+  color:var(--good);
+}
+
+.bad{
+  color:var(--bad);
+}
+
+/* WRITING */
+
+textarea{
+  min-height:170px;
+  resize:vertical;
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.actions{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:12px 18px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.check{
+  background:var(--turq);
+  color:white;
+}
+
+.check:hover{
+  background:var(--turq-dark);
+}
+
+.reset{
+  background:#e9eef2;
+  color:var(--ink);
+}
+
+/* RESULTS */
+
+.summary{
+  text-align:center;
+  padding:24px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+
+#score{
+  font-size:38px;
+  font-weight:900;
+  color:var(--turq-dark);
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+  .label-layout{
+    grid-template-columns:1fr;
+  }
+
+  .situation-grid,
+  .classify-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .vocab-grid,
+  .answer-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- HEADER -->
+
+<section class="hero">
+
+<div class="eyebrow">
+Spanish 1 • Interactive Practice
+</div>
+
+<h1>6. El salón de clase</h1>
+
+<p>
+Learn classroom vocabulary and practice identifying,
+understanding, classifying, and using common classroom words in Spanish.
+</p>
+
+<div class="progress-wrap">
+
+<div class="progress-label">
+<span>Your progress</span>
+<span id="progressText">0 / 30 correct</span>
+</div>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VOCABULARY -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num ref-num">A</div>
+<h2>El salón de clase</h2>
+</div>
+
+<p class="instructions">
+Study the vocabulary before completing the activities.
+</p>
+
+<div class="vocab-grid">
+
+<div class="vocab"><span class="spanish">la bandera</span><span class="english">flag</span></div>
+<div class="vocab"><span class="spanish">el estudiante</span><span class="english">student (boy)</span></div>
+
+<div class="vocab"><span class="spanish">el cartel</span><span class="english">poster</span></div>
+<div class="vocab"><span class="spanish">la estudiante</span><span class="english">student (girl)</span></div>
+
+<div class="vocab"><span class="spanish">la computadora</span><span class="english">computer</span></div>
+<div class="vocab"><span class="spanish">el profesor</span><span class="english">teacher</span></div>
+
+<div class="vocab"><span class="spanish">el mapa</span><span class="english">map</span></div>
+<div class="vocab"><span class="spanish">el libro</span><span class="english">book</span></div>
+
+<div class="vocab"><span class="spanish">la pizarra</span><span class="english">chalkboard</span></div>
+<div class="vocab"><span class="spanish">el cuaderno</span><span class="english">notebook</span></div>
+
+<div class="vocab"><span class="spanish">la mesa</span><span class="english">table</span></div>
+<div class="vocab"><span class="spanish">el papel</span><span class="english">paper</span></div>
+
+<div class="vocab"><span class="spanish">la silla</span><span class="english">chair</span></div>
+<div class="vocab"><span class="spanish">el diccionario</span><span class="english">dictionary</span></div>
+
+<div class="vocab"><span class="spanish">la puerta</span><span class="english">door</span></div>
+<div class="vocab"><span class="spanish">el bolígrafo</span><span class="english">pen</span></div>
+
+<div class="vocab"><span class="spanish">la ventana</span><span class="english">window</span></div>
+<div class="vocab"><span class="spanish">el lápiz</span><span class="english">pencil</span></div>
+
+<div class="vocab"><span class="spanish">el televisor</span><span class="english">television set</span></div>
+<div class="vocab"><span class="spanish">el borrador</span><span class="english">eraser</span></div>
+
+<div class="vocab"><span class="spanish">el reloj</span><span class="english">clock</span></div>
+<div class="vocab"><span class="spanish">la mochila</span><span class="english">backpack</span></div>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 10 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">10</div>
+<h2>Mi salón de clase</h2>
+</div>
+
+<p class="instructions">
+<strong>
+Look at the classroom illustration and write the correct Spanish word for each number.
+</strong>
+</p>
+
+<div class="label-layout">
+
+<div class="classroom-image">
+
+<!--
+LATER REPLACE THIS WITH:
+
+<img src="salon-clase.png" alt="Classroom illustration">
+
+The final black-and-white image should already include
+the numbers next to each classroom object.
+-->
+
+<div>
+<strong>Classroom illustration will go here.</strong>
+<br><br>
+The numbered black-and-white classroom illustration
+will be added here later.
+</div>
+
+</div>
+
+<div class="answer-grid">
+
+<div class="answer-item">
+<strong>1.</strong>
+<input id="label1" type="text">
+<div class="feedback" id="fb-label1"></div>
+</div>
+
+<div class="answer-item">
+<strong>2.</strong>
+<input id="label2" type="text">
+<div class="feedback" id="fb-label2"></div>
+</div>
+
+<div class="answer-item">
+<strong>3.</strong>
+<input id="label3" type="text">
+<div class="feedback" id="fb-label3"></div>
+</div>
+
+<div class="answer-item">
+<strong>4.</strong>
+<input id="label4" type="text">
+<div class="feedback" id="fb-label4"></div>
+</div>
+
+<div class="answer-item">
+<strong>5.</strong>
+<input id="label5" type="text">
+<div class="feedback" id="fb-label5"></div>
+</div>
+
+<div class="answer-item">
+<strong>6.</strong>
+<input id="label6" type="text">
+<div class="feedback" id="fb-label6"></div>
+</div>
+
+<div class="answer-item">
+<strong>7.</strong>
+<input id="label7" type="text">
+<div class="feedback" id="fb-label7"></div>
+</div>
+
+<div class="answer-item">
+<strong>8.</strong>
+<input id="label8" type="text">
+<div class="feedback" id="fb-label8"></div>
+</div>
+
+<div class="answer-item">
+<strong>9.</strong>
+<input id="label9" type="text">
+<div class="feedback" id="fb-label9"></div>
+</div>
+
+<div class="answer-item">
+<strong>10.</strong>
+<input id="label10" type="text">
+<div class="feedback" id="fb-label10"></div>
+</div>
+
+<div class="answer-item">
+<strong>11.</strong>
+<input id="label11" type="text">
+<div class="feedback" id="fb-label11"></div>
+</div>
+
+<div class="answer-item">
+<strong>12.</strong>
+<input id="label12" type="text">
+<div class="feedback" id="fb-label12"></div>
+</div>
+
+<div class="answer-item">
+<strong>13.</strong>
+<input id="label13" type="text">
+<div class="feedback" id="fb-label13"></div>
+</div>
+
+<div class="answer-item">
+<strong>14.</strong>
+<input id="label14" type="text">
+<div class="feedback" id="fb-label14"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="check" onclick="checkLabels()">
+Check Answers
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 11 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">11</div>
+<h2>¿Qué necesito?</h2>
+</div>
+
+<p class="instructions">
+<strong>
+Read each situation in English and choose the correct school item in Spanish.
+</strong>
+</p>
+
+<div class="situation-grid">
+
+
+<!-- 1 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+1
+</div>
+
+<div class="situation-text">
+You want to write notes during class.
+</div>
+
+<select id="s1">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="cuaderno">
+el cuaderno
+</option>
+
+<option value="mochila">
+la mochila
+</option>
+
+<option value="diccionario">
+el diccionario
+</option>
+
+<option value="reloj">
+el reloj
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s1"></div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+2
+</div>
+
+<div class="situation-text">
+You do not know the meaning of a new word.
+</div>
+
+<select id="s2">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="diccionario">
+el diccionario
+</option>
+
+<option value="silla">
+la silla
+</option>
+
+<option value="puerta">
+la puerta
+</option>
+
+<option value="bandera">
+la bandera
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s2"></div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+3
+</div>
+
+<div class="situation-text">
+You need to carry your books home.
+</div>
+
+<select id="s3">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="mochila">
+la mochila
+</option>
+
+<option value="pizarra">
+la pizarra
+</option>
+
+<option value="cartel">
+el cartel
+</option>
+
+<option value="ventana">
+la ventana
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s3"></div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+4
+</div>
+
+<div class="situation-text">
+You made a mistake with your pencil.
+</div>
+
+<select id="s4">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="borrador">
+el borrador
+</option>
+
+<option value="papel">
+el papel
+</option>
+
+<option value="mapa">
+el mapa
+</option>
+
+<option value="televisor">
+el televisor
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s4"></div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+5
+</div>
+
+<div class="situation-text">
+You want to know what time it is.
+</div>
+
+<select id="s5">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="reloj">
+el reloj
+</option>
+
+<option value="libro">
+el libro
+</option>
+
+<option value="computadora">
+la computadora
+</option>
+
+<option value="mesa">
+la mesa
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s5"></div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="situation-card">
+
+<div class="situation-number">
+6
+</div>
+
+<div class="situation-text">
+The teacher wants to write something for the class to see.
+</div>
+
+<select id="s6">
+
+<option value="">
+Choose an item
+</option>
+
+<option value="pizarra">
+la pizarra
+</option>
+
+<option value="mochila">
+la mochila
+</option>
+
+<option value="silla">
+la silla
+</option>
+
+<option value="lapiz">
+el lápiz
+</option>
+
+</select>
+
+<div class="classify-feedback" id="fb-s6"></div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="check" onclick="checkSituations()">
+Check Answers
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 12 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">12</div>
+<h2>Clasificar</h2>
+</div>
+
+<p class="instructions">
+<strong>
+Choose whether each item is usually found on the wall
+(<em>en la pared</em>) or on the tables
+(<em>en las mesas</em>).
+</strong>
+</p>
+
+<div class="classify-grid">
+
+
+<div class="classify-item">
+<div class="classify-name">la pizarra</div>
+
+<select id="c1">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c1"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el diccionario</div>
+
+<select id="c2">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c2"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el libro</div>
+
+<select id="c3">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c3"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el mapa</div>
+
+<select id="c4">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c4"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el lápiz</div>
+
+<select id="c5">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c5"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el borrador</div>
+
+<select id="c6">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c6"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el cartel</div>
+
+<select id="c7">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c7"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">la bandera</div>
+
+<select id="c8">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c8"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el cuaderno</div>
+
+<select id="c9">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c9"></div>
+</div>
+
+
+<div class="classify-item">
+<div class="classify-name">el reloj</div>
+
+<select id="c10">
+<option value="">Select...</option>
+<option value="pared">En la pared</option>
+<option value="mesas">En las mesas</option>
+</select>
+
+<div class="classify-feedback" id="fb-c10"></div>
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="check" onclick="checkClassify()">
+Check Answers
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITY 13 -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">13</div>
+<h2>En tu clase</h2>
+</div>
+
+<p class="instructions">
+<strong>
+Describe what your Spanish classroom looks like.
+</strong>
+Use vocabulary from this lesson.
+</p>
+
+<textarea placeholder="En mi clase hay..."></textarea>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num ref-num">✓</div>
+<h2>Your Results</h2>
+</div>
+
+<div class="summary">
+
+<div id="score">
+0 / 30
+</div>
+
+<div id="scoreMessage">
+Complete the interactive activities and check your answers.
+</div>
+
+</div>
+
+<div class="small">
+The score applies to Activities 10, 11, and 12.
+The writing activity should be reviewed with your teacher.
+</div>
+
+<div class="actions">
+
+<button class="reset" onclick="resetLesson()">
+Reset Practice
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   ACTIVITY 10
+
+   TEMPORARY ANSWER KEY
+
+   When the numbered classroom illustration is ready,
+   these answers must be changed to match the numbers
+   on your actual illustration.
+================================================== */
+
+const labelAnswers = {
+
+1:"la ventana",
+2:"la bandera",
+3:"la computadora",
+4:"la pizarra",
+5:"el reloj",
+6:"el profesor",
+7:"el cartel",
+8:"la puerta",
+9:"el estudiante",
+10:"la mesa",
+11:"la silla",
+12:"la mochila",
+13:"la estudiante",
+14:"el mapa"
+
+};
+
+
+/* ACTIVITY 11 */
+
+const situationAnswers = {
+
+s1:"cuaderno",
+s2:"diccionario",
+s3:"mochila",
+s4:"borrador",
+s5:"reloj",
+s6:"pizarra"
+
+};
+
+
+/* ACTIVITY 12 */
+
+const classifyAnswers = {
+
+c1:"pared",
+c2:"mesas",
+c3:"mesas",
+c4:"pared",
+c5:"mesas",
+c6:"mesas",
+c7:"pared",
+c8:"pared",
+c9:"mesas",
+c10:"pared"
+
+};
+
+
+let labelScore = 0;
+let situationScore = 0;
+let classifyScore = 0;
+
+
+/* NORMALIZE TYPED SPANISH */
+
+function normalize(text){
+
+return text
+.toLowerCase()
+.trim()
+.replace(/[.,!?]/g,"")
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"");
+
+}
+
+
+/* CHECK ACTIVITY 10 */
+
+function checkLabels(){
+
+labelScore = 0;
+
+for(let i=1;i<=14;i++){
+
+const input =
+document.getElementById("label"+i);
+
+const feedback =
+document.getElementById("fb-label"+i);
+
+if(
+normalize(input.value) ===
+normalize(labelAnswers[i])
+){
+
+feedback.textContent =
+"✓ Correct!";
+
+feedback.className =
+"feedback good";
+
+labelScore++;
+
+}else{
+
+feedback.textContent =
+"✕ Try again.";
+
+feedback.className =
+"feedback bad";
+
+}
+
+}
+
+updateScore();
+
+}
+
+
+/* CHECK ACTIVITY 11 */
+
+function checkSituations(){
+
+situationScore = 0;
+
+Object.keys(situationAnswers).forEach(function(id){
+
+const select =
+document.getElementById(id);
+
+const feedback =
+document.getElementById("fb-"+id);
+
+if(
+select.value ===
+situationAnswers[id]
+){
+
+feedback.textContent =
+"✓ Correct!";
+
+feedback.className =
+"classify-feedback good";
+
+situationScore++;
+
+}else{
+
+feedback.textContent =
+"✕ Try again.";
+
+feedback.className =
+"classify-feedback bad";
+
+}
+
+});
+
+updateScore();
+
+}
+
+
+/* CHECK ACTIVITY 12 */
+
+function checkClassify(){
+
+classifyScore = 0;
+
+Object.keys(classifyAnswers).forEach(function(id){
+
+const select =
+document.getElementById(id);
+
+const feedback =
+document.getElementById("fb-"+id);
+
+if(
+select.value ===
+classifyAnswers[id]
+){
+
+feedback.textContent =
+"✓ Correct!";
+
+feedback.className =
+"classify-feedback good";
+
+classifyScore++;
+
+}else{
+
+feedback.textContent =
+"✕ Try again.";
+
+feedback.className =
+"classify-feedback bad";
+
+}
+
+});
+
+updateScore();
+
+}
+
+
+/* UPDATE SCORE */
+
+function updateScore(){
+
+const correct =
+labelScore +
+situationScore +
+classifyScore;
+
+const total = 30;
+
+document.getElementById(
+"progressText"
+).textContent =
+correct + " / " + total + " correct";
+
+document.getElementById(
+"progressBar"
+).style.width =
+(correct / total * 100) + "%";
+
+document.getElementById(
+"score"
+).textContent =
+correct + " / " + total;
+
+const message =
+document.getElementById(
+"scoreMessage"
+);
+
+if(correct === total){
+
+message.textContent =
+"Excellent! You completed all of the interactive activities.";
+
+}else if(correct >= 20){
+
+message.textContent =
+"Great work! Review the answers that still need correction.";
+
+}else if(correct >= 10){
+
+message.textContent =
+"Good progress! Use the vocabulary reference to correct the remaining answers.";
+
+}else{
+
+message.textContent =
+"Keep practicing. Use the vocabulary reference above to help you.";
+
+}
+
+}
+
+
+/* RESET */
+
+function resetLesson(){
+
+document.querySelectorAll(
+"input"
+).forEach(function(input){
+
+input.value = "";
+
+});
+
+document.querySelectorAll(
+"select"
+).forEach(function(select){
+
+select.selectedIndex = 0;
+
+});
+
+document.querySelectorAll(
+"textarea"
+).forEach(function(textarea){
+
+textarea.value = "";
+
+});
+
+document.querySelectorAll(
+".feedback, .classify-feedback"
+).forEach(function(feedback){
+
+feedback.textContent = "";
+
+feedback.classList.remove(
+"good",
+"bad"
+);
+
+});
+
+labelScore = 0;
+situationScore = 0;
+classifyScore = 0;
+
+document.getElementById(
+"progressText"
+).textContent =
+"0 / 30 correct";
+
+document.getElementById(
+"progressBar"
+).style.width =
+"0%";
+
+document.getElementById(
+"score"
+).textContent =
+"0 / 30";
+
+document.getElementById(
+"scoreMessage"
+).textContent =
+"Complete the interactive activities and check your answers.";
+
+}
+
+</script>
+
+</body>
+</html>
