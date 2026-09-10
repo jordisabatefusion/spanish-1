@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4. Saludos y presentaciones — Spanish 1</title>
+
+<style>
+:root{
+  --turq:#2fb0b7;
+  --turq-dark:#1d8f96;
+  --gold:#f2a900;
+  --ink:#1f2933;
+  --muted:#667085;
+  --line:#d9e1e7;
+  --soft:#f6f9fb;
+  --good:#18794e;
+  --bad:#b42318;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#eef3f6;
+  color:var(--ink);
+}
+
+.page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
+
+/* HEADER */
+
+.hero{
+  background:linear-gradient(135deg,var(--turq-dark),var(--turq));
+  color:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 30px rgba(31,41,51,.12);
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  opacity:.9;
+}
+
+h1{
+  margin:7px 0 8px;
+  font-size:clamp(34px,5vw,54px);
+  line-height:1.05;
+}
+
+.hero p{
+  margin:0;
+  max-width:780px;
+  font-size:17px;
+  line-height:1.5;
+}
+
+.progress-wrap{margin-top:20px;}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+  background:rgba(255,255,255,.28);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#progressBar{
+  height:100%;
+  width:0;
+  background:var(--gold);
+  transition:.25s;
+}
+
+/* CARDS */
+
+.card{
+  margin-top:22px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 8px 20px rgba(31,41,51,.06);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.num{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--gold);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#2c2400;
+  flex:0 0 auto;
+}
+
+h2{
+  margin:0;
+  font-size:26px;
+}
+
+.instructions{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+
+/* REFERENCE */
+
+.reference-title{
+  margin:20px 0 10px;
+  font-size:17px;
+  font-weight:900;
+}
+
+.reference-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.vocab{
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+}
+
+.spanish{
+  color:var(--turq-dark);
+  font-size:19px;
+  font-weight:800;
+}
+
+.english{
+  color:var(--muted);
+  font-size:15px;
+  margin-top:5px;
+}
+
+.tip{
+  margin-top:18px;
+  background:#fff8df;
+  border-left:5px solid var(--gold);
+  padding:14px 16px;
+  border-radius:10px;
+  line-height:1.5;
+}
+
+/* ACTIVITY */
+
+.activity{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:20px;
+  margin-top:18px;
+}
+
+.activity-label{
+  display:inline-block;
+  background:#e7f7f8;
+  color:var(--turq-dark);
+  border-radius:999px;
+  padding:6px 11px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  margin-bottom:15px;
+}
+
+.sentence{
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:12px;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #edf1f4;
+}
+
+.sentence:last-child{
+  border-bottom:0;
+}
+
+select{
+  width:100%;
+  border:1.5px solid #b8c5cf;
+  border-radius:10px;
+  padding:10px;
+  font-size:15px;
+  background:white;
+}
+
+select:focus{
+  outline:3px solid rgba(47,176,183,.18);
+  border-color:var(--turq);
+}
+
+.text{
+  font-size:17px;
+  line-height:1.45;
+}
+
+.feedback{
+  grid-column:2;
+  min-height:18px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.good{color:var(--good);}
+.bad{color:var(--bad);}
+
+/* BUTTONS */
+
+.actions{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:12px 18px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.check{
+  background:var(--turq);
+  color:white;
+}
+
+.check:hover{
+  background:var(--turq-dark);
+}
+
+.reset{
+  background:#e9eef2;
+  color:var(--ink);
+}
+
+/* RESULTS */
+
+.summary{
+  text-align:center;
+  padding:25px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+
+#score{
+  font-size:38px;
+  font-weight:900;
+  color:var(--turq-dark);
+  margin-bottom:5px;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:15px;
+}
+
+@media(max-width:700px){
+
+  .reference-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sentence{
+    grid-template-columns:90px 1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- HEADER -->
+
+<section class="hero">
+
+<div class="eyebrow">Spanish 1 • Interactive Practice</div>
+
+<h1>4. Saludos y presentaciones</h1>
+
+<p>
+Learn how to ask someone's name, introduce yourself and others,
+and respond politely when meeting someone.
+</p>
+
+<div class="progress-wrap">
+
+<div class="progress-label">
+<span>Your progress</span>
+<span id="progressText">0 / 13 correct</span>
+</div>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REFERENCE -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">A</div>
+<h2>Saludos y presentaciones</h2>
+</div>
+
+<p class="instructions">
+Study these expressions before putting the conversations in the correct order.
+</p>
+
+<div class="reference-title">
+Asking someone's name and saying your name
+</div>
+
+<div class="reference-grid">
+
+<div class="vocab">
+<div class="spanish">¿Cómo te llamas?</div>
+<div class="english">What's your name?</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Me llamo...</div>
+<div class="english">My name is...</div>
+</div>
+
+</div>
+
+<div class="reference-title">
+Introducing people
+</div>
+
+<div class="reference-grid">
+
+<div class="vocab">
+<div class="spanish">Te presento a...</div>
+<div class="english">Let me introduce ... to you.</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Mucho gusto.</div>
+<div class="english">It's a pleasure.</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Encantado.</div>
+<div class="english">Nice to meet you. (male)</div>
+</div>
+
+<div class="vocab">
+<div class="spanish">Encantada.</div>
+<div class="english">Nice to meet you. (female)</div>
+</div>
+
+</div>
+
+<div class="tip">
+<strong>Remember:</strong> <em>Encantado</em> is used by a male speaker and
+<em>encantada</em> by a female speaker.
+</div>
+
+</section>
+
+
+<!-- ACTIVITY -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">1</div>
+<h2>Presentaciones</h2>
+</div>
+
+<p class="instructions">
+<strong>Put each conversation in order.</strong>
+Choose the position of each sentence: 1st, 2nd, 3rd, and so on.
+</p>
+
+
+<!-- A -->
+
+<div class="activity">
+
+<div class="activity-label">CONVERSATION A</div>
+
+<div class="sentence">
+<select id="a1">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Mucho gusto, Felipe.</div>
+<div class="feedback" id="fb-a1"></div>
+</div>
+
+<div class="sentence">
+<select id="a2">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Me llamo Ana.</div>
+<div class="feedback" id="fb-a2"></div>
+</div>
+
+<div class="sentence">
+<select id="a3">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Encantado, Ana.</div>
+<div class="feedback" id="fb-a3"></div>
+</div>
+
+<div class="sentence">
+<select id="a4">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Hola, me llamo Felipe. ¿Cómo te llamas?</div>
+<div class="feedback" id="fb-a4"></div>
+</div>
+
+</div>
+
+
+<!-- B -->
+
+<div class="activity">
+
+<div class="activity-label">CONVERSATION B</div>
+
+<div class="sentence">
+<select id="b1">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Mucho gusto, Antonio.</div>
+<div class="feedback" id="fb-b1"></div>
+</div>
+
+<div class="sentence">
+<select id="b2">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Hola, Jaime.</div>
+<div class="feedback" id="fb-b2"></div>
+</div>
+
+<div class="sentence">
+<select id="b3">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Encantado.</div>
+<div class="feedback" id="fb-b3"></div>
+</div>
+
+<div class="sentence">
+<select id="b4">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+</select>
+<div class="text">Hola, Sara. Te presento a Antonio.</div>
+<div class="feedback" id="fb-b4"></div>
+</div>
+
+</div>
+
+
+<!-- C -->
+
+<div class="activity">
+
+<div class="activity-label">CONVERSATION C</div>
+
+<div class="sentence">
+<select id="c1">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+<option value="5">5th</option>
+</select>
+<div class="text">Encantado, Raúl.</div>
+<div class="feedback" id="fb-c1"></div>
+</div>
+
+<div class="sentence">
+<select id="c2">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+<option value="5">5th</option>
+</select>
+<div class="text">Me llamo Laura.</div>
+<div class="feedback" id="fb-c2"></div>
+</div>
+
+<div class="sentence">
+<select id="c3">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+<option value="5">5th</option>
+</select>
+<div class="text">Mucho gusto, Laura.</div>
+<div class="feedback" id="fb-c3"></div>
+</div>
+
+<div class="sentence">
+<select id="c4">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+<option value="5">5th</option>
+</select>
+<div class="text">Hola. Me llamo Gustavo. Y tú, ¿cómo te llamas?</div>
+<div class="feedback" id="fb-c4"></div>
+</div>
+
+<div class="sentence">
+<select id="c5">
+<option value="">Order</option>
+<option value="1">1st</option>
+<option value="2">2nd</option>
+<option value="3">3rd</option>
+<option value="4">4th</option>
+<option value="5">5th</option>
+</select>
+<div class="text">Gustavo, te presento a Raúl.</div>
+<div class="feedback" id="fb-c5"></div>
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="check" onclick="checkAnswers()">
+Check Answers
+</button>
+
+<button class="reset" onclick="resetLesson()">
+Reset
+</button>
+
+</div>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section class="card">
+
+<div class="section-title">
+<div class="num">✓</div>
+<h2>Your Results</h2>
+</div>
+
+<div class="summary">
+
+<div id="score">0 / 13</div>
+
+<div id="scoreMessage">
+Put the conversations in order and check your answers.
+</div>
+
+</div>
+
+<div class="small">
+Practice activity only. Results are not automatically sent to the Canvas Gradebook.
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+const answers = {
+
+  /* A:
+     Felipe introduces himself,
+     Ana answers,
+     Felipe says nice to meet you,
+     Ana responds.
+  */
+
+  a1:"4",
+  a2:"2",
+  a3:"3",
+  a4:"1",
+
+  /* B:
+     Jaime greets Sara and introduces Antonio,
+     Sara greets Jaime,
+     Sara greets Antonio,
+     Antonio responds.
+  */
+
+  b1:"3",
+  b2:"2",
+  b3:"4",
+  b4:"1",
+
+  /* C:
+     Gustavo introduces himself,
+     Laura gives her name,
+     Gustavo responds,
+     Laura introduces Raúl,
+     Gustavo greets Raúl.
+  */
+
+  c1:"5",
+  c2:"2",
+  c3:"3",
+  c4:"1",
+  c5:"4"
+};
+
+
+function checkAnswers(){
+
+  let correct = 0;
+
+  Object.keys(answers).forEach(function(id){
+
+    const select = document.getElementById(id);
+    const feedback = document.getElementById("fb-" + id);
+
+    if(select.value === answers[id]){
+
+      feedback.textContent = "✓ Correct!";
+      feedback.className = "feedback good";
+      correct++;
+
+    } else {
+
+      feedback.textContent = "✕ Try again.";
+      feedback.className = "feedback bad";
+
+    }
+
+  });
+
+  updateScore(correct);
+}
+
+
+function updateScore(correct){
+
+  const total = 13;
+
+  document.getElementById("progressText").textContent =
+    correct + " / " + total + " correct";
+
+  document.getElementById("progressBar").style.width =
+    (correct / total * 100) + "%";
+
+  document.getElementById("score").textContent =
+    correct + " / " + total;
+
+  const message = document.getElementById("scoreMessage");
+
+  if(correct === total){
+
+    message.textContent =
+      "Excellent! All three conversations are in the correct order.";
+
+  } else if(correct >= 7){
+
+    message.textContent =
+      "Good work! Review the sentences that still need correction.";
+
+  } else {
+
+    message.textContent =
+      "Keep practicing. Think about how a natural introduction begins and ends.";
+
+  }
+}
+
+
+function resetLesson(){
+
+  document.querySelectorAll("select").forEach(function(select){
+    select.selectedIndex = 0;
+  });
+
+  document.querySelectorAll(".feedback").forEach(function(feedback){
+    feedback.textContent = "";
+    feedback.className = "feedback";
+  });
+
+  document.getElementById("progressText").textContent =
+    "0 / 13 correct";
+
+  document.getElementById("progressBar").style.width =
+    "0%";
+
+  document.getElementById("score").textContent =
+    "0 / 13";
+
+  document.getElementById("scoreMessage").textContent =
+    "Put the conversations in order and check your answers.";
+}
+
+</script>
+
+</body>
+</html>
